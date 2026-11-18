@@ -276,7 +276,7 @@ export default function CabinetsPage() {
     >
       <SEO
         title="Kitchen Cabinets & Bathroom Vanities — Massachusetts"
-        description="Solid wood kitchen cabinets, bathroom vanities and laundry room storage. Supplied and installed across New England. Free in-home consultation. Call (508) 510-4007."
+        description="Solid wood kitchen cabinets, bathroom vanities and laundry storage, supplied and installed across New England. Free consultation."
         canonical="/cabinets"
         keywords="kitchen cabinets Massachusetts, bathroom vanities MA, cabinet installation East Bridgewater, solid wood cabinets MA, kitchen remodel Massachusetts"
         schema={cabinetsSchema}

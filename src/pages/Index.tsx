@@ -47,12 +47,6 @@ const homeSchema = {
     "@type": "OpeningHoursSpecification",
     description: "By appointment only",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "200",
-    bestRating: "5",
-  },
   priceRange: "$$",
   image: "https://multflooring.com/og-image.jpg",
   sameAs: [
