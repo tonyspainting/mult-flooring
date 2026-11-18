@@ -86,7 +86,7 @@ const CABINET_STYLES: CabinetStyle[] = [
     material: "Solid Wood",
     best_for: "Kitchen",
     description:
-      "Oversized white island with seamless quartz waterfall. Perfect centerpiece for entertaining and open-concept layouts.",
+      "Oversized white island with continuous quartz waterfall. Perfect centerpiece for entertaining and open-concept layouts.",
     tag: "Signature",
     image: cabIslandWhiteQuartz,
     colors: ["#ffffff", "#f0ede8", "#e0dcd3"],
@@ -146,7 +146,7 @@ const CABINET_TYPES = [
     id: "builtins",
     label: "Built-Ins & Storage",
     description:
-      "Custom built-in hutches, glass-front display cabinets and laundry storage solutions tailored to your space.",
+      "Custom built-in hutches, glass-front display cabinets and laundry storage solutions built for your space.",
     image: cabGlassFrontBuiltIn,
   },
 ];
@@ -275,7 +275,7 @@ export default function CabinetsPage() {
       }}
     >
       <SEO
-        title="Kitchen Cabinets & Bathroom Vanities — Massachusetts"
+        title="Kitchen Cabinets and Bathroom Vanities in Massachusetts"
         description="Solid wood kitchen cabinets, bathroom vanities and laundry storage, supplied and installed across New England. Free consultation."
         canonical="/cabinets"
         keywords="kitchen cabinets Massachusetts, bathroom vanities MA, cabinet installation East Bridgewater, solid wood cabinets MA, kitchen remodel Massachusetts"
@@ -1053,7 +1053,7 @@ export default function CabinetsPage() {
                   >
                     {v.src ? (
                       <>
-                        {/* Vídeo opcional: quando v.src está vazio, mostramos a capa. */}
+                        {/* Optional video: when v.src is empty we render the poster instead. */}
                         <video
                           autoPlay
                           muted

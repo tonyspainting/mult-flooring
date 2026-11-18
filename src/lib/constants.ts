@@ -27,7 +27,7 @@ export const COMPANY = {
   },
 } as const;
 
-/** Link do WhatsApp com a mensagem já preenchida (usado nos botões "Get a Quote"). */
+/** WhatsApp link with the message pre-filled (used by the "Get a Quote" buttons). */
 export function whatsappUrl(message: string): string {
   return `https://wa.me/${COMPANY.phoneRaw}?text=${encodeURIComponent(message)}`;
 }
@@ -231,7 +231,7 @@ export const FLOORS: FloorProduct[] = [
     id: "white-oak-parquet",
     name: "White Oak Parquet",
     species: "Parquet",
-    width: '12"×12"',
+    width: '12" x 12"',
     finish: "Unfinished",
     thickness: '¾"',
     grade: "Select",
@@ -247,7 +247,7 @@ export const FLOORS: FloorProduct[] = [
     id: "red-oak-parquet",
     name: "Red Oak Parquet",
     species: "Parquet",
-    width: '12"×12"',
+    width: '12" x 12"',
     finish: "Unfinished",
     thickness: '¾"',
     grade: "Select",

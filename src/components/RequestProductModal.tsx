@@ -283,7 +283,7 @@ export default function RequestProductModal({ open, onClose, initialQuery = "", 
                 </p>
 
                 <form onSubmit={handleSubmit} noValidate>
-                  {/* Honeypot — invisible to humans, bots fill it */}
+                  {/* Honeypot: invisible to humans, bots fill it */}
                   <input
                     type="text"
                     name="website"

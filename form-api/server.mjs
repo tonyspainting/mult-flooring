@@ -1,5 +1,5 @@
-// Serviço mínimo que recebe os formulários do site e envia por e-mail via Resend.
-// Sem banco de dados, sem CRM: o registro do contato é o e-mail que chega em LEAD_TO.
+// Minimal service that receives the site forms and sends them by e-mail via Resend.
+// No database, no CRM: the contact record is the e-mail delivered to LEAD_TO.
 import http from "node:http";
 
 const PORT = Number(process.env.PORT || 3000);
@@ -82,7 +82,7 @@ function isRateLimited(ip) {
   return recent.length > RATE_MAX;
 }
 
-// O site envia os campos em PascalCase (Name, Phone, ...); aceitamos minúsculas também.
+// The site sends fields in PascalCase (Name, Phone, ...); lowercase works too.
 function validate(data) {
   const name = String(data.Name ?? data.name ?? "").trim();
   const phone = String(data.Phone ?? data.phone ?? "").trim();
@@ -227,7 +227,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Honeypot: preenchido apenas por robôs.
+  // Honeypot: only bots fill this in.
   if (payload._honey || payload.honeypot) {
     send(res, 200, { ok: true }, origin);
     return;
@@ -246,7 +246,7 @@ const server = http.createServer(async (req, res) => {
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error("send failed:", message);
-    // DEBUG_ERRORS=true expõe a mensagem do Resend na resposta (útil na configuração).
+    // DEBUG_ERRORS=true exposes the Resend error in the response (setup only).
     const detail = process.env.DEBUG_ERRORS === "true" ? message : undefined;
     send(res, 502, { error: "Could not send the message.", ...(detail ? { detail } : {}) }, origin);
   }

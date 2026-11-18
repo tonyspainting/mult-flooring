@@ -17,7 +17,7 @@ const ALL_PRODUCTS = COLLECTIONS.flatMap((c) => c.products);
 
 const priceValue = (price: string) => (price.match(/[\d.]+/) || ["0"])[0];
 
-// Schema.org: a página é um catálogo, e cada colorway é um Product com oferta.
+// Schema.org: the page is a catalog and each colorway is a Product with an offer.
 const flooringSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -196,7 +196,7 @@ function ProductCard({ product, onOpen }: { product: FloorProduct; onOpen: () =>
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            // Igual ao site antigo: "Get a Quote" abre o WhatsApp com o produto.
+            // Same as the previous site: "Get a Quote" opens WhatsApp with the product.
             window.open(
               whatsappUrl(
                 `Hi! I'm interested in ${product.collection} ${product.name} (${product.price}). Can you tell me more?`,
@@ -249,7 +249,7 @@ export default function FlooringPage() {
 
   const shown = filtered.reduce((n, c) => n + c.products.length, 0);
 
-  // Link direto /flooring?product=<id> (vindo da home): abre o lightbox do produto.
+  // Direct link /flooring?product=<id> (from the home page): opens the lightbox.
   useEffect(() => {
     const productId = searchParams.get("product");
     if (!productId) return;
@@ -262,8 +262,8 @@ export default function FlooringPage() {
     <Layout>
       <Navbar />
       <SEO
-        title="Vinyl Plank Flooring Catalog — Mult Flooring MA"
-        description="Browse our LVP vinyl plank flooring collections — Permshield Lite, Permshield One Plus and MSI Cyrus. Available in MA, RI and CT."
+        title="Vinyl Plank Flooring Catalog | Mult Flooring"
+        description="Browse our LVP vinyl plank flooring collections: Permshield Lite, Permshield One Plus and MSI Cyrus. Available in MA, RI and CT."
         canonical="/flooring"
         schema={flooringSchema}
       />
@@ -319,7 +319,7 @@ export default function FlooringPage() {
                 </span>
               </h1>
               <p style={{ fontSize: 17, lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginTop: 20, maxWidth: 440 }}>
-                Browse our complete LVP collection — waterproof, durable and beautiful. {COLLECTIONS.length} collections,{" "}
+                Browse our complete LVP collection: waterproof, durable and beautiful. {COLLECTIONS.length} collections,{" "}
                 {TOTAL_PRODUCTS} colorways, all available for installation across MA, RI and CT.
               </p>
             </div>
@@ -432,7 +432,7 @@ export default function FlooringPage() {
         </div>
       </div>
 
-      {/* ── Coleções ── */}
+      {/* ── Collections ── */}
       <main>
         {filtered.map((c) => (
           <section
@@ -516,7 +516,7 @@ export default function FlooringPage() {
           </section>
         )}
 
-        {/* ── CTA: não encontrou ── */}
+        {/* ── CTA: nothing found ── */}
         <section className="px-[var(--padding-x-mobile)] md:px-[var(--padding-x)]" style={{ background: "var(--color-bg-base)", paddingTop: 0, paddingBottom: 64 }}>
           <div style={{ maxWidth: 1280, margin: "0 auto" }}>
             <div style={{ background: "var(--color-bg-surface)", borderRadius: 16, padding: 40, textAlign: "center", marginTop: 64 }}>

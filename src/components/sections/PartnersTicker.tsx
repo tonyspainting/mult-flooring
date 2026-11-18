@@ -4,7 +4,7 @@ const TICKER_ITEMS = [
   { text: 'Hardwood Installation',        accent: false },
   { text: 'Licensed & Insured',           accent: true  },
   { text: 'Vinyl & LVP',                  accent: false },
-  { text: 'Serving MA · RI · CT',         accent: true  },
+  { text: 'Serving MA, RI and CT',         accent: true  },
   { text: 'Laminate Flooring',            accent: false },
   { text: 'Free In-Home Consultation',    accent: true  },
   { text: 'Hardwood Restoration',         accent: false },

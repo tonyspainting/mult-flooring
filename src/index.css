@@ -106,7 +106,7 @@
     --z-modal:   300;
     --z-overlay: 400;
 
-    /* ── shadcn aliases (HSL) — mapped to brand palette
+    /* ── shadcn aliases (HSL): mapped to brand palette
          so existing shadcn components keep rendering correctly. ── */
     --background: 33 33% 97%;          /* #faf7f4 */
     --foreground: 0 0% 10%;            /* #1a1a1a */
@@ -270,7 +270,7 @@ h2 {
 }
 
 
-/* Areas We Serve — accordion smooth open/close */
+/* Areas We Serve: accordion smooth open/close */
 .areas-accordion summary::-webkit-details-marker { display: none; }
 .areas-accordion summary::marker { content: ""; }
 .areas-accordion-content {

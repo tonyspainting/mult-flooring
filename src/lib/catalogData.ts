@@ -1,6 +1,6 @@
 // Centralized catalog data shared by the Flooring page, the Floors page and
 // the global site search. Values moved here verbatim from FlooringPage.tsx
-// (COLLECTIONS) and FloorsPage.tsx (SWATCHES) — do not change prices, names
+// (COLLECTIONS) and FloorsPage.tsx (SWATCHES): do not change prices, names
 // or images here without updating the catalog.
 
 export type Tone = "Light" | "Medium" | "Dark";
@@ -190,7 +190,7 @@ export const SWATCHES: Swatch[] = [
     width: "Medium",
     rooms: ["Living Room", "Bedroom", "Dining Room", "Kitchen"],
     description:
-      "Classic Gunstock stain — the most popular Red Oak finish in New England. Warm reddish-brown with rich depth and open grain character.",
+      "Classic Gunstock stain. The most popular Red Oak finish in New England. Warm reddish-brown with rich depth and open grain character.",
     details: {
       thickness: '¾"',
       grade: "Select & Better",
@@ -229,7 +229,7 @@ export const SWATCHES: Swatch[] = [
     width: "Medium",
     rooms: ["Living Room", "Dining Room", "Office"],
     description:
-      "Medium-dark warm brown stain with rich chocolate undertones. Adds sophistication without going too dark — a versatile choice for any room.",
+      "Medium-dark warm brown stain with rich chocolate undertones. Adds sophistication without going too dark. A versatile choice for any room.",
     details: {
       thickness: '¾"',
       grade: "Select & Better",
@@ -267,7 +267,7 @@ export const SWATCHES: Swatch[] = [
     width: "Wide Plank",
     rooms: ["Living Room", "Dining Room", "Office"],
     description:
-      "Near-black finish with warm brown undertones. The most dramatic Red Oak option — bold, sophisticated, and truly statement-making.",
+      "Near-black finish with warm brown undertones. The most dramatic Red Oak option: bold, sophisticated, and truly statement-making.",
     details: {
       thickness: '¾"',
       grade: "Select & Better",
@@ -346,7 +346,7 @@ export const SWATCHES: Swatch[] = [
     width: "Medium",
     rooms: ["Living Room", "Kitchen", "Dining Room"],
     description:
-      "Warm golden-amber stain that brings warmth to White Oak's cooler natural tone. Bright and inviting — great for family spaces.",
+      "Warm golden-amber stain that brings warmth to White Oak's cooler natural tone. Bright and inviting, great for family spaces.",
     details: {
       thickness: '¾"',
       grade: "Select & Better",
@@ -385,7 +385,7 @@ export const SWATCHES: Swatch[] = [
     width: "Wide Plank",
     rooms: ["Living Room", "Dining Room", "Office"],
     description:
-      "Near-black finish on White Oak — cooler and more refined than Red Oak Ebony. Dramatic contrast. Ideal for high-end residential and commercial.",
+      "Near-black finish on White Oak, cooler and more refined than Red Oak Ebony. Dramatic contrast. Ideal for high-end residential and commercial.",
     details: {
       thickness: '¾"',
       grade: "Select & Better",
@@ -410,7 +410,7 @@ export const SWATCHES: Swatch[] = [
       thickness: '¾"',
       grade: "Select",
       coating: "Site-finished",
-      available_widths: '12"×12" tiles',
+      available_widths: '12" x 12" tiles',
     },
     image: "/swatches/parquet-natural.jpg",
     hex: "#C68C4E",
@@ -425,12 +425,12 @@ export const SWATCHES: Swatch[] = [
     width: "Parquet",
     rooms: ["Living Room", "Dining Room", "Foyer", "Office"],
     description:
-      "Parquet patterns in warm Gunstock stain. Traditional and timeless — a staple of classic New England architecture.",
+      "Parquet patterns in warm Gunstock stain. Traditional and timeless, a staple of classic New England architecture.",
     details: {
       thickness: '¾"',
       grade: "Select",
       coating: "Site-finished",
-      available_widths: '12"×12" tiles',
+      available_widths: '12" x 12" tiles',
     },
     image: "/swatches/parquet-gunstock.jpg",
     hex: "#AC6C37",
@@ -444,12 +444,12 @@ export const SWATCHES: Swatch[] = [
     width: "Parquet",
     rooms: ["Living Room", "Dining Room", "Office"],
     description:
-      "Dark Walnut parquet — a bold statement piece. The geometric pattern combined with deep color creates an unforgettable floor.",
+      "Dark Walnut parquet, a bold statement piece. The geometric pattern combined with deep color creates an unforgettable floor.",
     details: {
       thickness: '¾"',
       grade: "Select",
       coating: "Site-finished",
-      available_widths: '12"×12" tiles',
+      available_widths: '12" x 12" tiles',
     },
     image: "/swatches/parquet-dark-walnut.jpg",
     hex: "#503012",
@@ -485,7 +485,7 @@ export const SWATCHES: Swatch[] = [
     width: "LVP",
     rooms: ["Kitchen", "Bathroom", "Basement", "Living Room"],
     description:
-      "Warm medium brown LVP. The most versatile vinyl option — looks great in any room and handles heavy traffic with ease.",
+      "Warm medium brown LVP. The most versatile vinyl option. It looks great in any room and handles heavy traffic with ease.",
     details: {
       thickness: "6mm",
       grade: "Commercial AC4",

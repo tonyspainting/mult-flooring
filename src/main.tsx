@@ -4,19 +4,19 @@ import App from "./App.tsx";
 import "./index.css";
 
 /**
- * O HTML das rotas públicas já vem pré-renderizado do build (scripts/prerender.mjs),
- * então Google, Bing, crawlers de IA e prévias de link leem o conteúdo sem
- * executar JavaScript.
+ * Public routes ship with prerendered HTML from the build
+ * (scripts/prerender.mjs), so Google, Bing, AI crawlers and link previews read
+ * the content without running JavaScript.
  *
- * Aqui usamos createRoot, e não hydrateRoot: a árvore usa framer-motion em
- * praticamente todas as seções, e as animações produzem estilos iniciais que
- * não coincidem entre servidor e cliente — a hidratação falharia e o React
- * descartaria o HTML do servidor de qualquer forma (erro #423). Renderizar no
- * cliente desde o início dá o mesmo resultado, sem erros no console.
+ * We use createRoot instead of hydrateRoot on purpose: nearly every section
+ * uses framer-motion, and its initial styles differ between server and client.
+ * Hydration would fail with React error #423 and React would discard the
+ * server HTML anyway. Rendering on the client from the start produces the same
+ * result without console errors.
  *
- * O ganho de SEO está no HTML servido, não na hidratação. Se um dia as seções
- * passarem a render estados idênticos no servidor, basta trocar por
- * hydrateRoot para aproveitar o HTML também na primeira pintura.
+ * The SEO benefit comes from the HTML that is served, not from hydration. If
+ * the sections ever render identical states on the server, switching to
+ * hydrateRoot would also speed up first paint.
  */
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>

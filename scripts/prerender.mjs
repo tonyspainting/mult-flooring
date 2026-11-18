@@ -1,6 +1,6 @@
-// Roda depois do "vite build": cria um index.html completo para cada página em
-// dist/ e regenera o sitemap. Se algo falhar aqui, o build quebra de propósito —
-// melhor falhar no deploy do que publicar um site sem conteúdo no HTML.
+// Runs after "vite build": writes a complete index.html for each page into
+// dist/ and regenerates the sitemap. If anything fails here the build breaks on
+// purpose: failing the deploy beats publishing a site with no content in the HTML.
 import fs from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
@@ -15,8 +15,8 @@ const { render, routes, sitemapRoutes, siteUrl } = await import(
   pathToFileURL(path.join(serverDir, entry)).href
 );
 
-// Tags que cada página define sozinha (via SEO). Removemos a versão genérica do
-// template antes de injetar a da rota, para não duplicar.
+// Tags each page defines itself (via SEO). The generic template version is
+// stripped before injecting the route one, to avoid duplicates.
 const perPage = [
   /<title>[\s\S]*?<\/title>/i,
   /<meta\s+name="description"[^>]*>/i,
@@ -43,8 +43,8 @@ for (const url of routes) {
   console.log("pré-renderizado:", url);
 }
 
-// <lastmod> com a data do último commit (estável entre builds); cai para a data
-// do build quando o .git não está disponível no container.
+// <lastmod> from the last commit date (stable across builds); falls back to
+// the build date when .git is not available inside the container.
 function sitemapLastmod() {
   try {
     const out = execSync("git log -1 --format=%cs", {
@@ -55,7 +55,7 @@ function sitemapLastmod() {
       .trim();
     if (/^\d{4}-\d{2}-\d{2}$/.test(out)) return out;
   } catch {
-    // sem git no ambiente de build
+    // no git in the build environment
   }
   return new Date().toISOString().slice(0, 10);
 }
@@ -74,4 +74,4 @@ ${sitemapRoutes
 `;
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 fs.rmSync(serverDir, { recursive: true, force: true });
-console.log(`sitemap.xml com ${sitemapRoutes.length} páginas`);
+console.log(`sitemap.xml with ${sitemapRoutes.length} pages`);

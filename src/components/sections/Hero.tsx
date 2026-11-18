@@ -76,7 +76,7 @@ const Hero = () => {
   const easeExpo = EASE_EXPO;
   const heroParallax = useParallax(40);
 
-  // Desktop overlays — darker, warmer, luxury
+  // Desktop overlays: darker, warmer, luxury
   const desktopLeftOverlay =
     "linear-gradient(to right, rgba(15, 10, 5, 0.82) 0%, rgba(15, 10, 5, 0.65) 25%, rgba(15, 10, 5, 0.35) 52%, rgba(15, 10, 5, 0.08) 72%, transparent 100%)";
   const desktopBottomOverlay =
@@ -190,7 +190,7 @@ const Hero = () => {
               className="text-[17px] font-normal leading-[1.6] max-w-[440px] mb-10"
               style={{ color: "rgba(240, 230, 216, 0.80)" }}
             >
-              Floors, cabinets, painting and tile — fully installed by our certified crew across New England.
+              Floors, cabinets, painting and tile, fully installed by our certified crew across New England.
             </motion.p>
 
             {/* Button Group */}
@@ -244,7 +244,7 @@ const Hero = () => {
                 }}
               />
               <div className="flex gap-12 items-start">
-                {/* Stat 1 — Projects */}
+                {/* Stat 1: Projects */}
                 <div className="flex flex-col items-center" style={{ gap: 6 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -273,7 +273,7 @@ const Hero = () => {
                   </span>
                 </div>
                 <div className="w-[1px] h-12 self-center" style={{ background: "rgba(240, 230, 216, 0.20)" }} />
-                {/* Stat 2 — Experience */}
+                {/* Stat 2: Experience */}
                 <div className="flex flex-col items-center" style={{ gap: 6 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="8" r="6" />
@@ -302,7 +302,7 @@ const Hero = () => {
                   </span>
                 </div>
                 <div className="w-[1px] h-12 self-center" style={{ background: "rgba(240, 230, 216, 0.20)" }} />
-                {/* Stat 3 — Rating */}
+                {/* Stat 3: Rating */}
                 <div className="flex flex-col items-center" style={{ gap: 6 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -360,7 +360,7 @@ const MobileHeroContent: React.FC = () => {
         minHeight: "100svh",
       }}
     >
-      {/* Headline — serif, bold, large */}
+      {/* Headline: serif, bold, large */}
       <motion.h1
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -418,10 +418,10 @@ const MobileHeroContent: React.FC = () => {
           maxWidth: 360,
         }}
       >
-        Floors, cabinets, painting and tile — fully installed by our certified crew across New England.
+        Floors, cabinets, painting and tile, fully installed by our certified crew across New England.
       </motion.p>
 
-      {/* Primary CTA — solid accent, full width */}
+      {/* Primary CTA: solid accent, full width */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -450,7 +450,7 @@ const MobileHeroContent: React.FC = () => {
         </a>
       </motion.div>
 
-      {/* Stats row — icon left + value/label stacked right */}
+      {/* Stats row: icon left + value/label stacked right */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

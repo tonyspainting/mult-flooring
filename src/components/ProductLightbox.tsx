@@ -4,14 +4,14 @@ import type { FloorProduct } from "@/lib/catalogData";
 
 interface Props {
   product: FloorProduct;
-  /** Descrição da coleção, mostrada abaixo do nome. */
+  /** Collection description, rendered below the product name. */
   description?: string;
   onClose: () => void;
 }
 
 /**
- * Lightbox do produto: fotos ampliadas (swatch e ambiente), navegação por
- * setas/teclado/swipe e botão de orçamento no WhatsApp.
+ * Product lightbox: enlarged photos (swatch and room), navigation by
+ * arrows, keyboard and swipe, plus a WhatsApp quote button.
  */
 export default function ProductLightbox({ product, description, onClose }: Props) {
   const images = [product.swatchImage, product.roomImage].filter(Boolean);
@@ -119,7 +119,7 @@ export default function ProductLightbox({ product, description, onClose }: Props
         )}
         <img
           src={images[index]}
-          alt={`${product.collection} ${product.name} — ${index === 0 ? "swatch" : "room"}`}
+          alt={`${product.collection} ${product.name}, ${index === 0 ? "swatch" : "room"}`}
           style={{ maxHeight: "60vh", maxWidth: "90vw", objectFit: "contain", display: "block" }}
         />
         {images.length > 1 && (
@@ -170,7 +170,7 @@ export default function ProductLightbox({ product, description, onClose }: Props
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 16, marginTop: 10 }}>
           <span style={{ fontSize: 18, fontWeight: 700, color: "var(--color-accent-mid)" }}>{product.price}</span>
           <span style={{ fontSize: 12, color: "rgba(255,255,255,0.5)" }}>
-            {product.thickness} · {product.tone}
+            {product.thickness}, {product.tone}
           </span>
         </div>
 

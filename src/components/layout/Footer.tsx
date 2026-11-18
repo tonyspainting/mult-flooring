@@ -140,7 +140,7 @@ const Footer = () => {
       className="md:py-14 md:px-[var(--padding-x)] py-10 px-[var(--padding-x-mobile)]"
     >
       <div className="mx-auto" style={{ maxWidth: "var(--max-width)" }}>
-        {/* Areas We Serve — accordion */}
+        {/* Areas We Serve: accordion */}
         <details
           className="group areas-accordion"
           style={{
@@ -172,7 +172,7 @@ const Footer = () => {
                   letterSpacing: "0.04em",
                 }}
               >
-                MA · RI · CT
+                MA, RI and CT
               </span>
               <svg
                 width="14"
@@ -324,8 +324,8 @@ const Footer = () => {
             >
               Visits by Appointment
             </p>
-            <ContactLink href="tel:5084637269">(508) 463-7269 · Cintia</ContactLink>
-            <ContactLink href="tel:7748237239">(774) 823-7239 · Vinícius</ContactLink>
+            <ContactLink href="tel:5084637269">(508) 463-7269 (Cintia)</ContactLink>
+            <ContactLink href="tel:7748237239">(774) 823-7239 (Vinícius)</ContactLink>
             <ContactLink href="mailto:multflooring@gmail.com">
               multflooring@gmail.com
             </ContactLink>

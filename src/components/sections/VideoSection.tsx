@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import SectionLabel from "@/components/ui/mult-section-label";
 
-// Vídeos: copiar os arquivos mp4 para /public/videos/
+// Videos: copy the mp4 files into /public/videos/
 // work-1.mp4 → SnapInsta_to_AQM2_CR...mp4
 // work-2.mp4 → SnapInsta_to_AQMWB5n...mp4
 // work-3.mp4 → SnapInsta_to_AQPwIlV...mp4
@@ -12,7 +12,7 @@ const VIDEOS = [
     src: '/videos/work-1.mp4',
     poster: '/projects/project-14.jpg',
     label: 'Installation in progress',
-    description: 'Our crew at work —\nprecision on every plank.',
+    description: 'Our crew at work.\nPrecision on every plank.',
   },
   {
     id: 'work-2',
@@ -26,7 +26,7 @@ const VIDEOS = [
     src: '/videos/work-3.mp4',
     poster: '/projects/project-03.jpg',
     label: 'Final result',
-    description: 'The finished floor —\nexactly as planned.',
+    description: 'The finished floor.\nExactly as planned.',
   },
 ];
 

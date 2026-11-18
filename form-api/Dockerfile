@@ -1,4 +1,4 @@
-# Serviço do formulário — sem dependências, só Node.
+# Form service: no dependencies, only Node.
 FROM node:22-alpine
 
 WORKDIR /app

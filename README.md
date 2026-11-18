@@ -1,60 +1,71 @@
 # Mult Flooring
 
-Site institucional e catálogo da Mult Flooring — instalação de pisos de madeira,
-vinílico e laminado em Massachusetts, Rhode Island e Connecticut.
+Marketing site and catalog for Mult Flooring: hardwood, vinyl and laminate
+flooring installation, plus kitchen cabinets, across Massachusetts, Rhode
+Island and Connecticut.
 
-**Stack:** Vite + React 18 + TypeScript + Tailwind CSS. Servido como site
-estático por nginx.
+**Stack:** Vite + React 18 + TypeScript + Tailwind CSS. Served as a static site
+by nginx, with all public routes prerendered at build time.
 
-**Formulário:** sem banco de dados e sem CRM. Os formulários enviam e-mail via
-[Resend](https://resend.com) através do serviço `form-api/` (Node, sem
-dependências).
+**Forms:** no database and no CRM. Submissions are delivered by e-mail through
+[Resend](https://resend.com) by the `form-api/` service (Node, no dependencies).
 
-## Estrutura
+## Structure
 
 ```
-src/            aplicação React (páginas, componentes, catálogo estático)
-public/         imagens, vídeos, ícones, sitemap, manifest
-form-api/       serviço que envia o formulário por e-mail (Resend)
-Dockerfile      build em 2 estágios → nginx
-nginx.conf      fallback do SPA, cache, /api/* → form-api
+src/                 React app (pages, components, static catalog)
+public/              images, video, icons, sitemap, manifest, llms.txt
+form-api/            form service that sends e-mail via Resend
+scripts/prerender.mjs  prerenders every public route after the build
+Dockerfile           two-stage build, nginx runtime
+nginx.conf           SPA fallback, caching, /api/* proxy, www redirect
 docker-compose.yml   web + form-api
-COOLIFY.md      passo a passo de deploy
+COOLIFY.md           deployment walkthrough
 ```
 
-## Desenvolvimento
+## Development
 
 ```bash
-cp .env.example .env          # VITE_FORM_ENDPOINT (deixe vazio)
+cp .env.example .env          # VITE_FORM_ENDPOINT (leave empty)
 npm install
 npm run dev                   # http://localhost:8080
 ```
 
-O formulário precisa da API. Para testar o envio localmente:
+The form needs the API. To test submissions locally:
 
 ```bash
 cd form-api
-cp .env.example .env          # preencha RESEND_API_KEY
+cp .env.example .env          # fill in RESEND_API_KEY
 node server.mjs               # http://localhost:3000
 ```
 
-E no `.env` do site: `VITE_FORM_ENDPOINT=http://localhost:3000/lead`.
+Then set `VITE_FORM_ENDPOINT=http://localhost:3000/lead` in the site `.env`.
+
+## Build
+
+```bash
+npm run build     # client build, SSR build, then prerender of all routes
+npm run build:spa # client build only, without prerendering
+```
+
+The build writes `dist/<route>/index.html` for every public page and
+regenerates `dist/sitemap.xml` with the last commit date.
 
 ## Deploy
 
-Ver [`COOLIFY.md`](./COOLIFY.md). Resumo: Docker Compose com dois serviços
-(`web` e `form-api`), e `RESEND_API_KEY` cadastrada no serviço `form-api`.
+See [`COOLIFY.md`](./COOLIFY.md). In short: Docker Compose with two services
+(`web` and `form-api`), and `RESEND_API_KEY` set on the `form-api` service.
 
-## Rotas
+## Routes
 
-| Rota | Página |
+| Route | Page |
 |---|---|
 | `/` | Home |
-| `/flooring` | Catálogo LVP (24 colorways) |
-| `/floors` | Amostras de piso |
-| `/cabinets` | Armários e vanities |
-| `/projects` | Projetos |
+| `/flooring` | LVP catalog (24 colorways) |
+| `/floors` | Floor samples |
+| `/cabinets` | Cabinets and vanities |
+| `/projects` | Projects |
 | `/showroom` | Showroom (East Bridgewater) |
-| `/process` | Como funciona |
-| `/contact` | Contato |
-| `/privacy-policy` | Política de privacidade |
+| `/process` | How installation works |
+| `/contact` | Contact |
+| `/privacy-policy` | Privacy policy |

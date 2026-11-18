@@ -78,7 +78,7 @@ const PREVIEW_SWATCHES: Swatch[] = [
     hex: "#C68C4E",
     tag: "Signature",
     description: "Classic herringbone and basket-weave patterns in natural Red Oak.",
-    details: { thickness: '¾"', grade: "Select", coating: "Site-finished", available_widths: '12"×12" tiles' }
+    details: { thickness: '¾"', grade: "Select", coating: "Site-finished", available_widths: '12" x 12" tiles' }
   }
 ];
 
@@ -127,7 +127,7 @@ const FloorPreview: React.FC = () => {
               Hardwood. <span className="gradient-text">Vinyl.</span> Laminate.
             </h2>
             <p className="text-[var(--color-text-secondary)] max-w-xl">
-              Explore our curated selection of premium flooring options. From classic oak to waterproof vinyl, find the perfect foundation for your space.
+              Hardwood, vinyl and laminate flooring in every finish. Compare samples of each option before choosing.
             </p>
           </div>
           <Link

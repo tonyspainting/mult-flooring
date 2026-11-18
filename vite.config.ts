@@ -23,13 +23,13 @@ export default defineConfig(({ isSsrBuild }) => ({
     assetsDir: "assets",
     sourcemap: false,
     rollupOptions: {
-      // Só no build do cliente: no build SSR o React é externo e o Rollup
-      // recusaria incluir o módulo em um chunk manual.
+      // Client build only: in the SSR build React is external and Rollup
+      // would refuse to place the module in a manual chunk.
       output: isSsrBuild
         ? {}
         : {
-            // Vendor em chunks estáveis: melhora o cache entre deploys e evita
-            // um único arquivo de ~690 KB.
+            // Stable vendor chunks: better browser cache across deploys and avoids
+            // a single ~690 KB file.
             manualChunks: {
               react: ["react", "react-dom", "react/jsx-runtime", "react-router-dom"],
               motion: ["framer-motion"],

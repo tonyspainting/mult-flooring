@@ -144,7 +144,7 @@ function Card({ product, index }: { product: BestSeller; index: number }) {
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            // Igual ao site antigo: "Get a Quote" abre o WhatsApp com o produto.
+            // Same as the previous site: "Get a Quote" opens WhatsApp with the product.
             window.open(
               whatsappUrl(
                 `Hi! I'm interested in ${product.collection} ${product.name} (${product.price}). Can you tell me more?`,

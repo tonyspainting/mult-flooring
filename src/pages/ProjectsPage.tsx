@@ -11,7 +11,7 @@ import { COMPANY, PROJECTS } from "@/lib/constants";
 const projectsSchema = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
-  name: "Flooring Installation Projects — Mult Flooring",
+  name: "Flooring Installation Projects | Mult Flooring",
   description:
     "Portfolio of hardwood, vinyl and laminate flooring installations across Massachusetts, Rhode Island and Connecticut.",
   provider: {
@@ -132,8 +132,8 @@ export default function ProjectsPage() {
       }}
     >
       <SEO
-        title="Flooring Installation Projects — MA, RI & CT"
-        description="Flooring installation projects across Massachusetts, Rhode Island and Connecticut — residential, commercial and hospitality work."
+        title="Flooring Installation Projects in MA, RI and CT"
+        description="Flooring installation projects across Massachusetts, Rhode Island and Connecticut. Residential, commercial and hospitality work."
         canonical="/projects"
         keywords="hardwood flooring projects Massachusetts, flooring installation portfolio MA, floor installation before after, hardwood floor examples"
         schema={projectsSchema}

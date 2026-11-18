@@ -1,5 +1,5 @@
-# Cache e contexto do Docker para o Mult Flooring
-# Tudo que não entra na imagem de build.
+# Docker context and cache for Mult Flooring
+# Everything that must not enter the build image.
 
 # Dependências e artefatos locais
 node_modules

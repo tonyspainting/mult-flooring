@@ -19,8 +19,8 @@ import NotFound from "./pages/NotFound.tsx";
 const queryClient = new QueryClient();
 
 /**
- * Rotas sem router. Exportado separado para a pré-renderização poder montar
- * com StaticRouter durante o build (scripts/prerender.mjs).
+ * Routes without a router. Exported separately so prerendering can mount
+ * them with StaticRouter during the build (scripts/prerender.mjs).
  */
 export const AppRoutes = () => (
   <Routes>
@@ -38,7 +38,7 @@ export const AppRoutes = () => (
   </Routes>
 );
 
-/** Providers sem router (usados no cliente e na pré-renderização). */
+/** Providers without a router (used on the client and during prerender). */
 export const AppProviders = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -49,7 +49,7 @@ export const AppProviders = ({ children }: { children: React.ReactNode }) => (
   </QueryClientProvider>
 );
 
-/** Limpa ?redirect=... da URL depois de um 404 em hosts antigos. */
+/** Clears ?redirect=... from the URL after a 404 on legacy hosts. */
 const RedirectCleanup = () => {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

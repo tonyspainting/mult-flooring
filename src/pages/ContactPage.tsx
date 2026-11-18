@@ -228,7 +228,7 @@ export default function ContactPage() {
       }}
     >
       <SEO
-        title="Get a Free Flooring Quote — East Bridgewater, MA"
+        title="Get a Free Flooring Quote in East Bridgewater, MA"
         description="Request a free in-home flooring consultation. Hardwood, vinyl, laminate and cabinet installation across New England. Call (508) 510-4007 or submit online."
         canonical="/contact"
         keywords="free flooring quote Massachusetts, flooring consultation MA, hardwood floor estimate, contact flooring contractor East Bridgewater"
@@ -274,7 +274,7 @@ export default function ContactPage() {
                 maxWidth: 400,
               }}
             >
-              Whether you have a question, need a quote, or just want to see
+              If you have a question, need a quote, or want to see
               samples, we're here. No pressure, no commitment.
             </p>
 
@@ -297,13 +297,13 @@ export default function ContactPage() {
                       href="tel:5084637269"
                       style={{ fontSize: 15, fontWeight: 500, color: "var(--color-text-primary)" }}
                     >
-                      (508) 463-7269 · Cintia
+                      (508) 463-7269 (Cintia)
                     </a>
                     <a
                       href="tel:7748237239"
                       style={{ fontSize: 15, fontWeight: 500, color: "var(--color-text-primary)" }}
                     >
-                      (774) 823-7239 · Vinícius
+                      (774) 823-7239 (Vinícius)
                     </a>
                   </div>
                 }

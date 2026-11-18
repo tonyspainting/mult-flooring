@@ -1,6 +1,6 @@
-// Pré-renderização: gera o HTML completo de cada página pública no build,
-// para Google, Bing, crawlers de IA e prévias de link lerem o conteúdo sem
-// executar JavaScript.
+// Prerendering: produces the full HTML of each public page at build time,
+// so Google, Bing, AI crawlers and link previews read the content without
+// running JavaScript.
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
@@ -10,7 +10,7 @@ export const siteUrl = "https://multflooring.com";
 
 type RouteMeta = { url: string; changefreq: string; priority: string };
 
-/** Páginas públicas, na ordem do sitemap. */
+/** Public pages, in sitemap order. */
 export const sitemapRoutes: RouteMeta[] = [
   { url: "/", changefreq: "weekly", priority: "1.0" },
   { url: "/flooring", changefreq: "weekly", priority: "0.9" },

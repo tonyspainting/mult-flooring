@@ -2,7 +2,7 @@ import { NewShowroomBadge } from "@/components/NewShowroomBadge";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SectionLabel from "@/components/ui/mult-section-label";
-// Vídeo do tour servido localmente, a partir de /public/videos.
+// Showroom tour video, served locally from /public/videos.
 const SHOWROOM_TOUR_SRC = "/videos/showroom-tour.mp4";
 
 
@@ -39,7 +39,7 @@ const ShowroomTeaser = () => {
       }}
     >
       <div className="max-w-[var(--max-width)] mx-auto grid md:grid-cols-2 gap-16 items-center">
-        {/* Left — copy */}
+        {/* Left: copy */}
         <motion.div {...fadeUp}>
           <SectionLabel style={{ color: "rgba(201,168,76,0.70)" }}>
             Our Showroom
@@ -67,7 +67,7 @@ const ShowroomTeaser = () => {
               maxWidth: 460,
             }}
           >
-            <NewShowroomBadge className="mr-2" />516 N Bedford St, Apt 3 — our showroom brings your renovation to life.
+            <NewShowroomBadge className="mr-2" />516 N Bedford St, Apt 3. Our showroom brings your renovation to life.
             Touch the materials, compare the finishes, and leave with
             confidence.
           </p>
@@ -89,14 +89,14 @@ const ShowroomTeaser = () => {
               className="hover:opacity-80 transition-opacity"
               style={{ fontSize: 14, color: "#C9A84C", textDecoration: "none" }}
             >
-              (508) 463-7269 · Cintia
+              (508) 463-7269 (Cintia)
             </a>
             <a
               href="tel:7748237239"
               className="hover:opacity-80 transition-opacity"
               style={{ fontSize: 14, color: "#C9A84C", textDecoration: "none" }}
             >
-              (774) 823-7239 · Vinícius
+              (774) 823-7239 (Vinícius)
             </a>
           </div>
 
@@ -120,7 +120,7 @@ const ShowroomTeaser = () => {
           </div>
         </motion.div>
 
-        {/* Right — video */}
+        {/* Right: video */}
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}

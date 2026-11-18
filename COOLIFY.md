@@ -1,145 +1,154 @@
-# Deploy no Coolify — Mult Flooring
+# Deploying on Coolify — Mult Flooring
 
-Guia da migração do site (`multflooring.com`) para uma VPS com Coolify.
+Migration guide for `multflooring.com` onto a VPS running Coolify.
 
 ---
 
-## 1. Arquitetura
+## 1. Architecture
 
-Dois containers, nada mais:
+Two containers, nothing else:
 
-| Container | Papel | Porta |
+| Container | Role | Port |
 |---|---|---|
-| `web` | nginx servindo o site estático (Vite) e encaminhando `/api/*` para o `form-api` | 80 |
-| `form-api` | Node 22 que recebe o formulário e envia por e-mail via **Resend** | 3000 (interna) |
+| `web` | nginx serving the static site (Vite build) and proxying `/api/*` to `form-api` | 80 |
+| `form-api` | Node 22 service that receives the form and sends e-mail via **Resend** | 3000 (internal) |
 
-**Não existe banco de dados, CRM, Supabase nem qualquer serviço do provedor antigo.** O formulário não grava nada: ele monta um e-mail e envia. O "registro" do contato é o e-mail que chega na caixa configurada em `LEAD_TO`.
+There is no database and no CRM. The form stores nothing: it builds an e-mail
+and sends it. The record of a contact is the e-mail delivered to `LEAD_TO`.
 
 ---
 
-## 2. O que foi removido do projeto
+## 2. What this project does not include
 
-| Removido | Era |
+The previous build shipped a database client, a CRM and several unused
+services. None of that exists here:
+
+| Removed | Was |
 |---|---|
-| `supabase/` (migrations + edge functions) | banco e funções do provedor antigo |
-| `drizzle/`, `drizzle.config.ts` | scaffold de ORM, não usado |
-| `backend/` | apenas documentação SQL |
-| `src/integrations/supabase/`, `src/lib/supabase.ts` | cliente do banco |
-| `src/pages/DashboardPage`, `LoginPage`, `ProductsLoginPage/Manager/New/Edit` | CRM e admin de produtos |
-| `src/components/auth/`, `src/components/products/` | guardas de rota e formulário de produto |
-| `src/lib/products.ts`, `quoteTracking.ts`, `pushNotifications.ts` | tabelas e notificações push |
-| `src/components/sections/ReviewsSection.tsx` | avaliações do banco (não era renderizado) |
-| `src/components/sections/ProductsTeaser.tsx` | vitrine do banco (renderizava vazio) |
-| `public/sw.js` | service worker de push |
-| `.lovable/`, `bun.lockb` | artefatos do provedor antigo |
-| deps `@supabase/*`, `drizzle-*`, `postgres`, `lovable-tagger`, `@lovable.dev/*` | — |
+| `supabase/` | database migrations and edge functions |
+| `drizzle/`, `drizzle.config.ts` | ORM scaffold, unused |
+| `backend/` | SQL documentation only |
+| `src/integrations/supabase/`, `src/lib/supabase.ts` | database client |
+| CRM pages and admin routes | dashboard, login, product admin |
+| `src/lib/products.ts`, `quoteTracking.ts`, `pushNotifications.ts` | table access and push |
+| `public/sw.js` | push service worker |
+| deps `@supabase/*`, `drizzle-*`, `postgres`, `lovable-tagger` | — |
 
-Efeito colateral positivo: o JS do site caiu de **1.377 KB para 688 KB**.
+Effect on the bundle: JavaScript went from 1,377 KB to 688 KB.
 
-A rota `/products` (listagem vinda do banco) deixou de existir e agora responde **301 → /flooring**, onde está o catálogo estático.
+`/products` (a database listing) no longer exists and now responds with
+**301 → /flooring**, where the static catalog lives.
 
 ---
 
-## 3. Configurar o Resend (uma vez)
+## 3. Configure Resend (once)
 
-1. Crie a conta em [resend.com](https://resend.com).
+1. Create an account at [resend.com](https://resend.com).
 2. **Domains → Add Domain** → `multflooring.com`.
-3. Adicione os registros DNS que ele mostrar (SPF, DKIM). O `MX` não é necessário.
-4. Espere o status virar **Verified** (normalmente minutos).
-5. **API Keys → Create** → permissão *Sending access*. Copie a chave (`re_...`).
+3. Add the DNS records it shows (SPF, DKIM). No MX is required for sending.
+4. Wait for the status to become **Verified**.
+5. **API Keys → Create** with *Sending access*. Copy the key (`re_...`).
 
-Sem o domínio verificado o envio falha com `403` do Resend. Para testar antes disso, use `onboarding@resend.dev` em `LEAD_FROM` — mas ele só entrega no e-mail dono da conta.
+Without a verified domain every send fails with `403`.
 
 ---
 
-## 4. Deploy no Coolify
+## 4. Deploy on Coolify
 
 1. **New Resource → Application**
-2. **Source:** repositório `tonyspainting/mult-flooring`, branch `main`
+2. **Source:** `tonyspainting/mult-flooring`, branch `main`
 3. **Build Pack:** `Docker Compose`
    - Compose file: `/docker-compose.yml`
-4. **Environment Variables** (do serviço `form-api`):
+4. **Environment Variables** on the `form-api` service:
 
-| Variável | Obrigatória | Valor |
+| Variable | Required | Value |
 |---|---|---|
-| `RESEND_API_KEY` | **sim** | `re_...` |
-| `LEAD_TO` | sim | `multflooring@gmail.com` (aceita vários, separados por vírgula) |
-| `LEAD_FROM` | sim | `Mult Flooring <leads@multflooring.com>` (domínio verificado) |
-| `ALLOWED_ORIGINS` | não | `https://multflooring.com,https://www.multflooring.com` |
-| `DEBUG_ERRORS` | não | `true` só durante a configuração |
+| `RESEND_API_KEY` | **yes** | `re_...` |
+| `LEAD_TO` | yes | `multflooring@gmail.com` (several allowed, comma-separated) |
+| `LEAD_FROM` | yes | `Mult Flooring <leads@multflooring.com>` (verified domain) |
+| `ALLOWED_ORIGINS` | no | `https://multflooring.com,https://www.multflooring.com` |
+| `DEBUG_ERRORS` | no | `true` only while setting up |
 
-5. **Domain:** `multflooring.com` e `www.multflooring.com` → serviço `web`, porta `80`
-   - Ative **HTTPS / Let's Encrypt**
+5. **Domain:** `multflooring.com` and `www.multflooring.com` → service `web`, port `80`
+   - Enable **HTTPS / Let's Encrypt**
 6. **Deploy**
 
-> **Sobre `VITE_FORM_ENDPOINT`:** deixe **vazia**. O padrão é `/api/lead`, que o nginx encaminha para o `form-api` dentro da mesma rede Docker — sem CORS e sem subdomínio. Só preencha se a API for para outro domínio (ex.: `https://api.multflooring.com/lead`).
+> **About `VITE_FORM_ENDPOINT`:** leave it **empty**. The default is `/api/lead`,
+> which nginx forwards to `form-api` inside the Docker network — no CORS and no
+> extra subdomain. Set it only when the API lives elsewhere, e.g.
+> `https://api.multflooring.com/lead`.
 
 ---
 
-## 5. Checklist depois do deploy
+## 5. Post-deploy checklist
 
 ```bash
 BASE=https://multflooring.com
 
-# 1. Site responde
+# 1. Site responds
 curl -sI $BASE | head -1                       # 200
 
-# 2. Healthcheck do nginx
+# 2. nginx healthcheck
 curl -s $BASE/healthz                          # ok
 
-# 3. Form-api alcançável pelo proxy e configurado
+# 3. Form API reachable and configured
 curl -s $BASE/api/health                       # {"ok":true,"configured":true}
 
-# 4. Rotas do SPA
-for p in /floors /flooring /cabinets /projects /showroom /process /contact /privacy-policy; do
+# 4. SPA routes (all prerendered)
+for p in /flooring /floors /cabinets /projects /showroom /process /contact /privacy-policy; do
   printf "%-18s %s\n" "$p" "$(curl -s -o /dev/null -w '%{http_code}' $BASE$p)"
 done
 
-# 5. Rota antiga redireciona
+# 5. Legacy route redirects
 curl -sI $BASE/products | grep -E 'HTTP|Location'   # 301 -> /flooring
 
-# 6. Rotas do CRM antigo não existem mais
-curl -s -o /dev/null -w '%{http_code}\n' $BASE/dashboard      # 404
-curl -s -o /dev/null -w '%{http_code}\n' $BASE/products-admin # 404
+# 6. Old CRM routes no longer exist
+curl -s -o /dev/null -w '%{http_code}\n' $BASE/dashboard       # 404
+curl -s -o /dev/null -w '%{http_code}\n' $BASE/products-admin  # 404
 
-# 7. Vídeo local
+# 7. Unknown route returns a real 404 (not a soft 404)
+curl -s -o /dev/null -w '%{http_code}\n' $BASE/does-not-exist  # 404
+
+# 8. Local video asset
 curl -sI $BASE/videos/showroom-tour.mp4 | grep -E 'HTTP|Content-Length'
 
-# 8. Formulário de verdade (envia um e-mail real!)
+# 9. Form end to end (sends a real e-mail)
 curl -s -X POST $BASE/api/lead \
   -H 'Content-Type: application/json' \
-  -d '{"Name":"Teste Deploy","Phone":"5085550000","Email":"teste@example.com","Service":"Hardwood","Message":"Teste pós-deploy"}'
-# esperado: {"ok":true}  → e-mail deve chegar em LEAD_TO
+  -d '{"Name":"Deploy Test","Phone":"5085550000","Email":"you@example.com","Service":"Hardwood","Message":"Post-deploy test"}'
+# expected: {"ok":true}
 ```
 
-Se o item **3** devolver `502`, o nginx está no ar mas não encontra o `form-api` (confira se os dois serviços subiram na mesma rede).
-Se devolver `503`, o container subiu sem `RESEND_API_KEY`.
+If step 3 returns `502`, nginx is up but cannot reach `form-api` (check that
+both services are on the same network). A `503` means the container started
+without `RESEND_API_KEY`.
 
 ---
 
-## 6. Cloudflare na frente do VPS
+## 6. Cloudflare in front of the VPS
 
-- Registros `A` para o IP da VPS, com proxy ativado (“nuvem laranja”).
-- **SSL/TLS mode: `Full (strict)`** — nunca `Flexible`, que gera loop de redirecionamento com o Let's Encrypt do Coolify.
+- `A` records pointing to the VPS IP, proxy enabled (orange cloud).
+- **SSL/TLS mode: `Full (strict)`** — never `Flexible`, which loops against the
+  Coolify certificate.
 
 ---
 
-## 7. Testar sem Docker, direto na máquina
+## 7. Run it without Docker
 
 ```bash
 # terminal 1 — API
 cd form-api
-RESEND_API_KEY=re_... LEAD_TO=seu@email.com PORT=3000 node server.mjs
+RESEND_API_KEY=re_... LEAD_TO=you@example.com PORT=3000 node server.mjs
 
 # terminal 2 — site
 npm install
 VITE_FORM_ENDPOINT=http://localhost:3000/lead npm run dev
 ```
 
-Ou com Docker:
+Or with Docker:
 
 ```bash
-cp form-api/.env.example form-api/.env   # preencha RESEND_API_KEY
+cp form-api/.env.example form-api/.env   # fill in RESEND_API_KEY
 docker compose up --build
 # http://localhost:8080
 ```
@@ -148,19 +157,26 @@ docker compose up --build
 
 ## 8. Troubleshooting
 
-| Sintoma | Causa provável |
+| Symptom | Likely cause |
 |---|---|
-| `Bind for 0.0.0.0:8080 failed: port is already allocated` | o compose publicava a porta no host. Já corrigido: o `web` agora usa `expose: 80` e a porta só é publicada no `docker-compose.override.yml` (ignorado pelo Coolify) |
-| `/api/lead` → `502` | `form-api` não subiu ou está em outra rede |
-| `/api/lead` → `503` | falta `RESEND_API_KEY` no container |
-| `/api/lead` → `502` com `DEBUG_ERRORS=true` | veja a mensagem do Resend: domínio não verificado, `from` inválido ou chave sem permissão de envio |
-| `/api/lead` → `429` | rate limit: 5 envios por IP a cada 10 minutos |
-| `/api/lead` → `400` | falta nome ou telefone |
-| Site branco | build sem `dist` — veja o log do estágio `build` no Coolify |
-| 404 em `/flooring` | `nginx.conf` não foi copiado para `/etc/nginx/conf.d/` |
+| `Bind for 0.0.0.0:8080 failed: port is already allocated` | the compose file published a host port. It now uses `expose: 80`; only `docker-compose.override.yml` publishes a port, and Coolify ignores that file |
+| `/api/lead` → `502` | `form-api` is not running or sits on another network |
+| `/api/lead` → `503` | `RESEND_API_KEY` missing in the container |
+| `/api/lead` → `502` with `DEBUG_ERRORS=true` | read the Resend message: unverified domain, invalid `from`, or a key without sending permission |
+| `/api/lead` → `429` | rate limit: 5 sends per IP every 10 minutes |
+| `/api/lead` → `400` | name or phone missing |
+| Blank site | the `build` stage produced no `dist`; check the Coolify build log |
+| 404 on `/flooring` | `nginx.conf` was not copied to `/etc/nginx/conf.d/` |
 
 ---
 
-## 9. Pendência opcional (não bloqueia)
+## 9. SEO notes
 
-O site continua sendo um SPA: o HTML entregue tem `<div id="root"></div>` e nenhum texto, então buscadores sem JavaScript e crawlers de IA veem uma página vazia. O projeto do Tony's resolve isso com pré-renderização (`scripts/prerender.mjs` + `entry-server.tsx`). Vale portar esse passo quando o deploy estiver estável.
+Every public route is prerendered at build time: the HTML served to crawlers
+already contains the page content, title, description, canonical, Open Graph
+tags and JSON-LD schema. `/llms.txt`, `/robots.txt` and `/sitemap.xml` are
+generated or served from the same build.
+
+The site still renders on the client after load (`createRoot`, not hydration),
+which is why the HTML is what matters for indexing. See the comment in
+`src/main.tsx` for the reasoning.

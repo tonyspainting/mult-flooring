@@ -86,7 +86,7 @@ const Index = () => {
         }}
       />
 
-      {/* Grain overlay removed â€” was causing scroll jank from full-screen animated SVG turbulence + mix-blend-mode repaints */}
+      {/* Grain overlay removed: it caused scroll jank from a full-screen animated SVG with mix-blend-mode repaints. */}
 
 
       <Navbar />

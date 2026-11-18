@@ -1,14 +1,14 @@
 # ─────────────────────────────────────────────────────────────
-# Mult Flooring — site estático para Coolify
+# Mult Flooring: static site for Coolify
 #
-# A aplicação é um SPA (Vite + React). Não há banco de dados nem
-# CRM. O único serviço dinâmico é o formulário, que fica no
+# The app is a SPA (Vite + React). There is no database and
+# no CRM. The only dynamic service is the form, which lives in
 # container `form-api` (pasta form-api/) e envia e-mail via Resend.
-# Este container serve os arquivos estáticos e encaminha /api/*
-# para o form-api (ver nginx.conf).
+# This container serves the static files and proxies /api/*
+# to form-api (see nginx.conf).
 #
-# IMPORTANTE: VITE_FORM_ENDPOINT é embutida no bundle durante o
-# BUILD, então precisa chegar como build arg.
+# IMPORTANT: VITE_FORM_ENDPOINT is baked into the bundle at
+# BUILD time, so it must arrive as a build arg.
 # ─────────────────────────────────────────────────────────────
 
 # ---------- estágio 1: build ----------
@@ -21,7 +21,7 @@ ARG VITE_FORM_ENDPOINT=""
 
 ENV VITE_FORM_ENDPOINT=$VITE_FORM_ENDPOINT
 
-# Camada de dependências (aproveita cache enquanto o lock não muda)
+# Dependency layer (reuses cache while the lock file is unchanged)
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
@@ -29,8 +29,8 @@ RUN npm ci --no-audit --no-fund
 COPY . .
 RUN npm run build
 
-# Sanidade: falha o build se o bundle não foi gerado
-RUN test -f dist/index.html || (echo "ERRO: dist/index.html não gerado" && exit 1)
+# Sanity check: fail the build if the bundle was not produced
+RUN test -f dist/index.html || (echo "ERROR: dist/index.html not generated" && exit 1)
 
 # ---------- estágio 2: runtime ----------
 FROM nginx:1.27-alpine AS runtime
@@ -39,7 +39,7 @@ FROM nginx:1.27-alpine AS runtime
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/app.conf
 
-# Arquivos estáticos gerados
+# Generated static files
 COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80

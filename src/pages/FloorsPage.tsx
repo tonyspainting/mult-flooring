@@ -178,13 +178,13 @@ const FloorsPage = () => {
   return (
     <>
       <SEO
-        title="Digital Showroom — Floor Samples | Mult Flooring"
+        title="Digital Showroom and Floor Samples | Mult Flooring"
         description="Browse 23 hardwood, vinyl and laminate floor finishes. Free samples delivered. Installation across New England."
         canonical="/floors"
         schema={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "Digital Showroom — Floor Samples",
+          name: "Digital Showroom and Floor Samples",
           description:
             "Hardwood, vinyl and laminate floor finishes with free samples delivered. Installation across Massachusetts, Rhode Island and Connecticut.",
           url: "https://multflooring.com/floors",
@@ -743,7 +743,7 @@ const FloorsPage = () => {
                   </AnimatePresence>
                 </div>
 
-                {/* Detail panel — anchored to selected swatch's group */}
+                {/* Detail panel: anchored to selected swatch's group */}
                 <AnimatePresence initial={false}>
                   {detailInGroup && (
                     <motion.div
@@ -766,7 +766,7 @@ const FloorsPage = () => {
                         className="p-6 md:p-10"
                       >
                         <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-8 md:gap-12">
-                          {/* LEFT — visual */}
+                          {/* LEFT: visual */}
                           <div>
                             <motion.div
                               initial={{ opacity: 0 }}
@@ -794,7 +794,7 @@ const FloorsPage = () => {
                                 letterSpacing: "0.08em",
                               }}
                             >
-                              {detailInGroup.species} — {detailInGroup.name}
+                              {detailInGroup.species}: {detailInGroup.name}
                             </div>
                             <div
                               style={{
@@ -825,7 +825,7 @@ const FloorsPage = () => {
                             </div>
                           </div>
 
-                          {/* RIGHT — details */}
+                          {/* RIGHT: details */}
                           <div>
                             <div
                               style={{
@@ -1024,7 +1024,7 @@ const FloorsPage = () => {
                                 size="md"
                                 onClick={() =>
                                   window.open(
-                                    `mailto:multflooring@gmail.com?subject=Sample Request — ${detailInGroup.species} ${detailInGroup.name}`,
+                                    `mailto:multflooring@gmail.com?subject=Sample Request: ${detailInGroup.species} ${detailInGroup.name}`,
                                     "_blank",
                                   )
                                 }

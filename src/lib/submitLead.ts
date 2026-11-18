@@ -1,11 +1,11 @@
-// Envio dos formulários por e-mail (Resend), sem banco de dados e sem CRM.
-// O endpoint é a nossa própria API (form-api) — por padrão no mesmo domínio,
-// em /api/lead, com o nginx encaminhando para o container da API.
-// VITE_FORM_ENDPOINT pode sobrescrever no build (ex.: https://api.dominio.com/lead).
+// Sends the forms by e-mail (Resend), with no database and no CRM.
+// The endpoint is our own API (form-api): same domain by default,
+// at /api/lead, with nginx forwarding to the API container.
+// VITE_FORM_ENDPOINT can override it at build time (e.g. https://api.example.com/lead).
 
 const FORM_ENDPOINT: string = import.meta.env.VITE_FORM_ENDPOINT || "/api/lead";
 
-/** Honeypot: campo invisível que só robô preenche. */
+/** Honeypot: a hidden field only bots fill in. */
 export const HONEYPOT_FIELD = "_honey";
 
 export interface LeadFields {
@@ -13,10 +13,10 @@ export interface LeadFields {
   phone: string;
   email?: string;
   address?: string;
-  /** Tipo de projeto / serviço */
+  /** Project type / service */
   service?: string;
   message?: string;
-  /** De onde veio o contato: hero, contact, cta-final, product-request... */
+  /** Where the lead came from: hero, contact, cta-final, product-request... */
   source?: string;
   campaign?: string;
   preferPhone?: boolean;
@@ -42,8 +42,8 @@ export async function submitLead(fields: LeadFields): Promise<void> {
     body: JSON.stringify(payload),
   });
 
-  // A API responde { error } quando algo falha, então checar só o status
-  // HTTP daria falso positivo.
+  // The API returns { error } on failure, so checking only the status
+  // code would give a false positive.
   const data = await response.json().catch(() => null);
   if (!response.ok) {
     throw new Error(data?.error || data?.message || `Form endpoint returned ${response.status}`);

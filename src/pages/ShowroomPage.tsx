@@ -8,7 +8,7 @@ import Footer from "@/components/layout/Footer";
 import BrandButton from "@/components/ui/mult-button";
 import SectionLabel from "@/components/ui/mult-section-label";
 import SEO from "@/components/SEO";
-// Vídeo do tour servido localmente, a partir de /public/videos.
+// Showroom tour video, served locally from /public/videos.
 const SHOWROOM_TOUR_SRC = "/videos/showroom-tour.mp4";
 
 
@@ -123,7 +123,7 @@ const MapPin = ({ size = 14, color = "#C9A84C" }: { size?: number; color?: strin
 );
 
 /* ============================================================ */
-/* SECTION 1 — HERO                                             */
+/* SECTION 1: HERO                                             */
 /* ============================================================ */
 const Hero = () => (
   <section
@@ -307,7 +307,7 @@ const Hero = () => (
 );
 
 /* ============================================================ */
-/* SECTION 2 — WELCOME / MAIN VIDEO                             */
+/* SECTION 2: WELCOME / MAIN VIDEO                             */
 /* ============================================================ */
 const Welcome = () => (
   <section
@@ -374,7 +374,7 @@ const Welcome = () => (
 );
 
 /* ============================================================ */
-/* SECTION 3 — FLOOR COLLECTION                                 */
+/* SECTION 3: FLOOR COLLECTION                                 */
 /* ============================================================ */
 const FloorCollection = () => (
   <section
@@ -404,7 +404,7 @@ const FloorCollection = () => (
             marginTop: 16,
           }}
         >
-          We carry the most complete selection of hardwood in the region —
+          We carry the most complete selection of hardwood in the region.
           Red Oak, White Oak, Wide Plank and more. Every species, every
           finish, every width. All available to touch and compare side by side.
         </p>
@@ -477,7 +477,7 @@ const FloorCollection = () => (
 );
 
 /* ============================================================ */
-/* SECTION 4 — STAIR & RAIL DISPLAY                             */
+/* SECTION 4: STAIR & RAIL DISPLAY                             */
 /* ============================================================ */
 const StairRail = () => (
   <section
@@ -486,7 +486,7 @@ const StairRail = () => (
   >
     <div className="max-w-[var(--max-width)] mx-auto grid md:grid-cols-2 gap-16 items-center">
       <motion.div {...fadeUp} className="order-2 md:order-1">
-        {/* Desktop — 3 equal columns, all 9:16 */}
+        {/* Desktop: 3 equal columns, all 9:16 */}
         <div className="hidden md:grid md:grid-cols-3" style={{ gap: 8 }}>
           <video
             src="/showroom/showroom-video-2.mp4"
@@ -532,7 +532,7 @@ const StairRail = () => (
           />
         </div>
 
-        {/* Mobile — horizontal carousel */}
+        {/* Mobile: horizontal carousel */}
         <MobileCarousel
           widthVw={80}
           ar="9 / 16"
@@ -596,7 +596,7 @@ const StairRail = () => (
             marginTop: 16,
           }}
         >
-          Our showroom features a full stair and rail display — so you can
+          Our showroom features a full stair and rail display, so you can
           see exactly how your staircase will look before a single board is
           installed. Compare balusters, newel posts and handrail profiles
           side by side.
@@ -607,7 +607,7 @@ const StairRail = () => (
 );
 
 /* ============================================================ */
-/* SECTION 5 — TILE & STONE                                     */
+/* SECTION 5: TILE & STONE                                     */
 /* ============================================================ */
 const TileStone = () => (
   <section
@@ -637,14 +637,14 @@ const TileStone = () => (
             margin: "16px auto 0",
           }}
         >
-          From marble-look porcelain to natural stone — our tile collection
+          From marble-look porcelain to natural stone, our tile collection
           brings a whole new dimension to your renovation. See them in
           person and find the perfect complement to your floors.
         </p>
       </motion.div>
 
       <motion.div {...fadeUp} style={{ marginTop: 48 }}>
-        {/* Desktop — 3 columns */}
+        {/* Desktop: 3 columns */}
         <div className="hidden md:grid md:grid-cols-3" style={{ gap: 12 }}>
           <img
             src="/showroom/showroom-tile-samples.jpg"
@@ -690,7 +690,7 @@ const TileStone = () => (
           />
         </div>
 
-        {/* Mobile — horizontal carousel */}
+        {/* Mobile: horizontal carousel */}
         <MobileCarousel
           widthVw={80}
           ar="9 / 16"
@@ -734,7 +734,7 @@ const TileStone = () => (
 );
 
 /* ============================================================ */
-/* SECTION 6 — THE SPACE                                        */
+/* SECTION 6: THE SPACE                                        */
 /* ============================================================ */
 const TheSpace = () => (
   <section
@@ -765,7 +765,7 @@ const TheSpace = () => (
             maxWidth: 480,
           }}
         >
-          Over 2,000 sq ft of carefully curated displays — floors, stairs,
+          Over 2,000 sq ft of displays: floors, stairs,
           tile and cabinets all under one roof in East Bridgewater, MA.
         </p>
       </motion.div>
@@ -852,7 +852,7 @@ const TheSpace = () => (
         </div>
       </motion.div>
 
-      {/* Mobile — horizontal carousel replacing bento grid */}
+      {/* Mobile: horizontal carousel replacing bento grid */}
       <div style={{ marginTop: 48 }}>
         <MobileCarousel
           widthVw={85}
@@ -977,7 +977,7 @@ const TheSpace = () => (
 );
 
 /* ============================================================ */
-/* SECTION 7 — BOOK YOUR VISIT                                  */
+/* SECTION 7: BOOK YOUR VISIT                                  */
 /* ============================================================ */
 const BookYourVisit = () => (
   <section
@@ -1009,7 +1009,7 @@ const BookYourVisit = () => (
           }}
         >
           Our showroom is open by appointment. Call Cintia or Vinícius to
-          schedule your visit — we'll have everything ready when you arrive.
+          schedule your visit. We'll have everything ready when you arrive.
         </p>
       </motion.div>
 
@@ -1099,8 +1099,8 @@ const ShowroomPage = () => {
   return (
     <Layout>
       <SEO
-        title="Visit Our Showroom — East Bridgewater, MA"
-        description="Visit the Mult Flooring showroom in East Bridgewater, MA. Browse hardwood, vinyl, tile and stair samples in person. By appointment — call Cintia or Vinícius."
+        title="Visit Our Showroom in East Bridgewater, MA"
+        description="Visit the Mult Flooring showroom in East Bridgewater, MA. Browse hardwood, vinyl, tile and stair samples in person. By appointment. Call Cintia or Vinícius."
         canonical="/showroom"
         schema={{
           "@context": "https://schema.org",
