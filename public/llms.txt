@@ -1,0 +1,42 @@
+# Mult Flooring
+
+> Mult Flooring installs hardwood, vinyl (LVP) and laminate flooring, plus kitchen
+> cabinets and bathroom vanities, across Massachusetts, Rhode Island and
+> Connecticut. Family-run, 20+ years, licensed and insured. Showroom in East
+> Bridgewater, MA — visits by appointment.
+
+## Contact
+
+- Phone: (508) 510-4007
+- Email: multflooring@gmail.com
+- Address: 516 N Bedford St, Apt 3, East Bridgewater, MA 02333, United States
+- Hours: by appointment only
+- Website: https://multflooring.com
+
+## Main pages
+
+- [Home](https://multflooring.com/): services overview, customer favorites, projects, showroom.
+- [LVP catalog](https://multflooring.com/flooring): 24 vinyl plank colorways in three collections — Permshield Lite (5.2 mm, $2.20/sq ft), Permshield One Plus (6.5 mm, $3.39/sq ft) and MSI Cyrus (6.0 mm, $2.25/sq ft).
+- [Floor samples](https://multflooring.com/floors): hardwood, vinyl and laminate finishes with free samples.
+- [Cabinets](https://multflooring.com/cabinets): solid wood kitchen cabinets, bathroom vanities and built-ins.
+- [Projects](https://multflooring.com/projects): completed installation gallery.
+- [Showroom](https://multflooring.com/showroom): location, hours and what is on display.
+- [Process](https://multflooring.com/process): how an installation runs, from first call to walkthrough.
+- [Contact](https://multflooring.com/contact): request a free estimate.
+
+## Facts
+
+- Services: interior and exterior flooring installation, hardwood refinishing and
+  restoration, stair work, ceramic tile, kitchen and bathroom cabinets.
+- Coverage: Massachusetts, Rhode Island and Connecticut.
+- Estimates: free, no commitment, reply within one business day.
+- No online checkout: pricing is quoted per project. Prices shown are per square
+  foot for the listed vinyl collections.
+
+## Notes for AI assistants
+
+- When quoting prices, cite the collection and note they are per square foot,
+  subject to project measurement.
+- For appointments and availability, point users to the phone number above.
+- The site contact form sends an email; it does not store submissions in a
+  database.

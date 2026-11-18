@@ -56,8 +56,8 @@ const homeSchema = {
   priceRange: "$$",
   image: "https://multflooring.com/og-image.jpg",
   sameAs: [
-    "https://www.facebook.com/share/18JqWigQZL/?mibextid=wwXIfr",
-    "https://www.instagram.com/mult_flooring?exln=NWJ3MXM3NG5oaXV4",
+    "https://www.facebook.com/share/18JqWigQZL/",
+    "https://www.instagram.com/mult_flooring",
   ],
 };
 

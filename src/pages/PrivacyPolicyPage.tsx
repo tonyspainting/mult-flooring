@@ -40,6 +40,21 @@ const PrivacyPolicyPage = () => {
         title="Privacy Policy | Mult Flooring"
         description="Privacy Policy for Mult Flooring. Learn how we collect, use, and protect your personal information when you request a quote or contact us."
         canonical="/privacy-policy"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Privacy Policy",
+          description:
+            "How Mult Flooring collects, uses and protects the information you submit through the website contact forms.",
+          url: "https://multflooring.com/privacy-policy",
+          inLanguage: "en-US",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Mult Flooring",
+            url: "https://multflooring.com",
+          },
+          publisher: { "@id": "https://multflooring.com/#business" },
+        }}
       />
 
       {/* Page header */}

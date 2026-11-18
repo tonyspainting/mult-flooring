@@ -11,6 +11,49 @@ const TONES: Tone[] = ["Light", "Medium", "Dark"];
 
 const TOTAL_PRODUCTS = COLLECTIONS.reduce((n, c) => n + c.products.length, 0);
 
+const ALL_PRODUCTS = COLLECTIONS.flatMap((c) => c.products);
+
+const priceValue = (price: string) => (price.match(/[\d.]+/) || ["0"])[0];
+
+// Schema.org: a página é um catálogo, e cada colorway é um Product com oferta.
+const flooringSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Vinyl Plank Flooring Catalog",
+  description:
+    "LVP vinyl plank flooring catalog with Permshield Lite, Permshield One Plus and MSI Cyrus collections, available in MA, RI and CT.",
+  url: "https://multflooring.com/flooring",
+  isPartOf: { "@type": "WebSite", name: "Mult Flooring", url: "https://multflooring.com" },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: TOTAL_PRODUCTS,
+    itemListElement: ALL_PRODUCTS.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: p.name,
+        description: `${p.collection} luxury vinyl plank, ${p.thickness} thick, ${p.tone.toLowerCase()} tone.`,
+        image: `https://multflooring.com${p.swatchImage}`,
+        brand: { "@type": "Brand", name: p.brand },
+        category: "Flooring",
+        offers: {
+          "@type": "Offer",
+          price: priceValue(p.price),
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: priceValue(p.price),
+            priceCurrency: "USD",
+            unitText: "square foot",
+          },
+        },
+      },
+    })),
+  },
+};
+
 const primaryButton: React.CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
@@ -211,6 +254,7 @@ export default function FlooringPage() {
         title="Vinyl Plank Flooring Catalog — Mult Flooring MA"
         description="Browse our LVP vinyl plank flooring collections — Permshield Lite, Permshield One Plus and MSI Cyrus. Available in MA, RI and CT."
         canonical="/flooring"
+        schema={flooringSchema}
       />
 
       {/* ── Hero ── */}

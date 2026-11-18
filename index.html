@@ -2,64 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-               maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#1a1a1a" />
-    <meta name="apple-mobile-web-app-capable"
-      content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent" />
-    <meta name="apple-mobile-web-app-title"
-      content="Mult CRM" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Mult Flooring" />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon"
-      href="/favicon.ico" />
-    <link rel="icon" type="image/png"
-      sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png"
-      sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon"
-      sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Fonts -->
-    <link rel="preconnect"
-      href="https://fonts.googleapis.com" />
-    <link rel="preconnect"
-      href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- SEO fallback -->
-    <title>Mult Flooring — Hardwood Installation
-      MA, RI & CT</title>
-    <meta name="description"
-      content="Professional hardwood, vinyl and laminate
-      flooring installation serving MA, RI and CT." />
+    <!--
+      Título estático: serve de fallback enquanto o React não monta.
+      A meta description NÃO fica aqui — cada rota define a sua pelo
+      componente SEO (react-helmet). Um valor fixo aqui criaria uma
+      segunda description em todas as páginas.
+    -->
+    <title>Mult Flooring — Hardwood, Vinyl &amp; Laminate Installation | MA, RI &amp; CT</title>
 
     <!-- Geo tags -->
     <meta name="geo.region" content="US-MA" />
-    <meta name="geo.placename"
-      content="East Bridgewater, Massachusetts" />
-    <meta name="geo.position"
-      content="42.0334;-70.9578" />
-    <meta name="ICBM"
-      content="42.0334, -70.9578" />
+    <meta name="geo.placename" content="East Bridgewater, Massachusetts" />
+    <meta name="geo.position" content="42.0334;-70.9578" />
+    <meta name="ICBM" content="42.0334, -70.9578" />
 
     <!-- Robots -->
-    <meta name="robots"
-      content="index, follow,
-               max-image-preview:large" />
-    <meta name="language" content="English" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Mult Flooring" />
 
-    <!-- OG Image correto -->
-    <meta property="og:image"
-      content="https://multflooring.com/og-image.jpg" />
-    <meta name="twitter:image"
-      content="https://multflooring.com/og-image.jpg" />
+    <!-- Open Graph / Twitter (fallback estático; o SEO por rota sobrescreve) -->
+    <meta property="og:site_name" content="Mult Flooring" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://multflooring.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://multflooring.com/og-image.jpg" />
   </head>
 
   <body>

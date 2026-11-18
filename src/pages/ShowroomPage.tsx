@@ -1102,6 +1102,45 @@ const ShowroomPage = () => {
         title="Visit Our Showroom — East Bridgewater, MA"
         description="Visit the Mult Flooring showroom in East Bridgewater, MA. Browse hardwood, vinyl, tile and stair samples in person. By appointment — call Cintia or Vinícius."
         canonical="/showroom"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "HomeAndConstructionBusiness",
+          "@id": "https://multflooring.com/#business",
+          name: "Mult Flooring",
+          description:
+            "Showroom for hardwood, vinyl and laminate flooring and kitchen cabinets. Visits by appointment.",
+          url: "https://multflooring.com/showroom",
+          telephone: "+15085104007",
+          email: "multflooring@gmail.com",
+          image: "https://multflooring.com/og-image.jpg",
+          priceRange: "$$",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "516 N Bedford St, Apt 3",
+            addressLocality: "East Bridgewater",
+            addressRegion: "MA",
+            postalCode: "02333",
+            addressCountry: "US",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 42.0334,
+            longitude: -70.9578,
+          },
+          openingHoursSpecification: {
+            "@type": "OpeningHoursSpecification",
+            description: "Visits by appointment only",
+          },
+          areaServed: [
+            { "@type": "State", name: "Massachusetts" },
+            { "@type": "State", name: "Rhode Island" },
+            { "@type": "State", name: "Connecticut" },
+          ],
+          sameAs: [
+            "https://www.instagram.com/mult_flooring",
+            "https://www.facebook.com/share/18JqWigQZL/",
+          ],
+        }}
       />
       <Navbar />
       <main>

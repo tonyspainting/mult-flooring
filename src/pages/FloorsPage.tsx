@@ -180,7 +180,20 @@ const FloorsPage = () => {
       <SEO
         title="Digital Showroom — Floor Samples | Mult Flooring"
         description="Browse 23 hardwood, vinyl and laminate floor finishes. Free samples delivered. Installation across New England."
-        canonical="https://multflooring.com/floors"
+        canonical="/floors"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Digital Showroom — Floor Samples",
+          description:
+            "Hardwood, vinyl and laminate floor finishes with free samples delivered. Installation across Massachusetts, Rhode Island and Connecticut.",
+          url: "https://multflooring.com/floors",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "Mult Flooring",
+            url: "https://multflooring.com",
+          },
+        }}
       />
       <Navbar />
 
