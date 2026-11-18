@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SectionLabel from "@/components/ui/mult-section-label";
 import BrandButton from "@/components/ui/mult-button";
+import { whatsappUrl } from "@/lib/constants";
 
 interface BestSeller {
   id: string;
@@ -143,7 +144,14 @@ function Card({ product, index }: { product: BestSeller; index: number }) {
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            navigate("/contact");
+            // Igual ao site antigo: "Get a Quote" abre o WhatsApp com o produto.
+            window.open(
+              whatsappUrl(
+                `Hi! I'm interested in ${product.collection} ${product.name} (${product.price}). Can you tell me more?`,
+              ),
+              "_blank",
+              "noopener,noreferrer",
+            );
           }}
           style={{
             marginTop: 10,

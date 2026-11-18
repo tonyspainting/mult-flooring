@@ -5,6 +5,7 @@ import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/layout/Footer";
 import { COLLECTIONS, type FloorProduct, type Tone } from "@/lib/catalogData";
+import { whatsappUrl } from "@/lib/constants";
 import { useRequestProduct } from "@/context/RequestProductContext";
 
 const TONES: Tone[] = ["Light", "Medium", "Dark"];
@@ -192,7 +193,14 @@ function ProductCard({ product }: { product: FloorProduct }) {
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            navigate("/contact");
+            // Igual ao site antigo: "Get a Quote" abre o WhatsApp com o produto.
+            window.open(
+              whatsappUrl(
+                `Hi! I'm interested in ${product.collection} ${product.name} (${product.price}). Can you tell me more?`,
+              ),
+              "_blank",
+              "noopener,noreferrer",
+            );
           }}
           className="transition-all duration-200 hover:!bg-[#7a4f1e] hover:!text-white"
           style={{

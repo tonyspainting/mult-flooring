@@ -27,6 +27,11 @@ export const COMPANY = {
   },
 } as const;
 
+/** Link do WhatsApp com a mensagem já preenchida (usado nos botões "Get a Quote"). */
+export function whatsappUrl(message: string): string {
+  return `https://wa.me/${COMPANY.phoneRaw}?text=${encodeURIComponent(message)}`;
+}
+
 export const NAV_LINKS = [
   { label: "Flooring", href: "/flooring" },
   { label: "Cabinets", href: "/cabinets" },
