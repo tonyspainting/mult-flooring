@@ -1,0 +1,62 @@
+# Mult Flooring — dois containers:
+#   web       → nginx servindo o site estático (porta 80) e /api/* → form-api
+#   form-api  → Node que envia o formulário por e-mail via Resend
+#
+# Uso local:
+#   cp form-api/.env.example form-api/.env   # e preencha RESEND_API_KEY
+#   docker compose up --build
+#   abrir http://localhost:8080
+#   (a porta vem do docker-compose.override.yml, que o Coolify ignora)
+#
+# No Coolify: build pack "Docker Compose", apontando para este arquivo.
+# O domínio é ligado ao serviço `web` na porta 80, pela rede interna.
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Vazio = mesmo domínio (/api/lead). Preencha só se a API estiver
+        # em outro endereço, ex.: https://api.multflooring.com/lead
+        VITE_FORM_ENDPOINT: ${VITE_FORM_ENDPOINT:-}
+    image: mult-flooring-web:latest
+    container_name: mult-flooring-web
+    # NÃO publicar porta no host: no Coolify o proxy (Traefik) alcança o
+    # container pela rede interna. Publicar "8080:80" colide com a porta
+    # do próprio servidor. Para testar na sua máquina, use o
+    # docker-compose.override.yml, que adiciona a porta só localmente.
+    expose:
+      - "80"
+    depends_on:
+      - form-api
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  form-api:
+    build:
+      context: ./form-api
+      dockerfile: Dockerfile
+    image: mult-flooring-form-api:latest
+    container_name: mult-flooring-form-api
+    environment:
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      LEAD_TO: ${LEAD_TO:-multflooring@gmail.com}
+      LEAD_FROM: ${LEAD_FROM:-Mult Flooring <leads@multflooring.com>}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-https://multflooring.com,https://www.multflooring.com}
+      DEBUG_ERRORS: ${DEBUG_ERRORS:-false}
+      PORT: "3000"
+    expose:
+      - "3000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

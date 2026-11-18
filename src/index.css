@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================================
+   Mult Flooring — Design Tokens
+   All brand colors, typography, spacing and motion tokens.
+   ============================================================= */
+
+@layer base {
+  :root {
+    /* ── BRAND COLORS (raw) ── */
+    --color-bg-base:        #faf7f4;
+    --color-bg-surface:     #f0e6d8;
+    --color-bg-elevated:    #e8d8c4;
+    --color-bg-dark:        #1a1a1a;
+    --color-bg-dark-2:      #111111;
+
+    --color-border:         #e0cdb8;
+    --color-border-strong:  #c8b89a;
+
+    --color-text-primary:   #1a1a1a;
+    --color-text-secondary: #6b5c4a;
+    --color-text-muted:     #9e8c7a;
+    --color-text-light:     #ffffff;
+    --color-text-cream:     #f0e6d8;
+
+    --color-accent:         #7a4f1e;
+    --color-accent-hover:   #5a3a14;
+    --color-accent-mid:     #C47C3A;
+    --color-accent-light:   #D4956B;
+
+    /* ── TYPOGRAPHY ── */
+    --font-family:          'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans:            'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display:         'Playfair Display', Georgia, serif;
+
+    --text-hero:            clamp(48px, 6.5vw, 88px);
+    --text-section:         clamp(30px, 4vw, 52px);
+    --text-subsection:      clamp(20px, 2.5vw, 32px);
+    --text-body-lg:         18px;
+    --text-body:            16px;
+    --text-sm:              14px;
+    --text-xs:              13px;
+    --text-micro:           11px;
+
+    --weight-regular:       400;
+    --weight-medium:        500;
+    --weight-semibold:      600;
+
+    --leading-tight:        1.0;
+    --leading-snug:         1.25;
+    --leading-normal:       1.6;
+    --leading-relaxed:      1.75;
+
+    --tracking-tight:       -0.025em;
+    --tracking-snug:        -0.02em;
+    --tracking-normal:      0;
+    --tracking-wide:        0.05em;
+    --tracking-wider:       0.1em;
+    --tracking-widest:      0.15em;
+
+    /* ── SPACING (8px base) ── */
+    --space-1:   8px;
+    --space-2:   16px;
+    --space-3:   24px;
+    --space-4:   32px;
+    --space-5:   40px;
+    --space-6:   48px;
+    --space-8:   64px;
+    --space-10:  80px;
+    --space-12:  96px;
+    --space-15:  120px;
+
+    /* ── LAYOUT ── */
+    --max-width:            1320px;
+    --padding-x:            40px;
+    --padding-x-mobile:     20px;
+    --section-py:           120px;
+    --section-py-mobile:    32px;
+
+    /* ── RADIUS ── */
+    --radius-sm:    3px;
+    --radius-md:    6px;
+    --radius-lg:    10px;
+    --radius-pill:  999px;
+
+    /* ── MOTION ── */
+    --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-fast:  180ms;
+    --duration-base:  260ms;
+    --duration-slow:  420ms;
+    --duration-enter: 500ms;
+
+    /* ── SHADOWS ── */
+    --shadow-sm: 0 1px 3px rgba(26, 26, 26, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 26, 26, 0.08);
+
+    /* ── Z-INDEX ── */
+    --z-nav:     100;
+    --z-drawer:  200;
+    --z-modal:   300;
+    --z-overlay: 400;
+
+    /* ── shadcn aliases (HSL) — mapped to brand palette
+         so existing shadcn components keep rendering correctly. ── */
+    --background: 33 33% 97%;          /* #faf7f4 */
+    --foreground: 0 0% 10%;            /* #1a1a1a */
+    --card: 33 33% 97%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 29 61% 30%;             /* #7a4f1e accent */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 33 41% 90%;           /* #f0e6d8 surface */
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 33 41% 90%;
+    --muted-foreground: 30 14% 55%;    /* #9e8c7a muted */
+
+    --accent: 29 61% 30%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 32 39% 80%;              /* #e0cdb8 */
+    --input: 32 39% 80%;
+    --ring: 29 61% 30%;
+
+    --radius: 6px;
+
+    --sidebar-background: 33 33% 97%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 29 61% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 33 41% 90%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 32 39% 80%;
+    --sidebar-ring: 29 61% 30%;
+  }
+}
+
+/* =============================================================
+   Global reset & base typography
+   ============================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-mid);
+}
+
+/* ── Text selection ── */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+/* ── Gradient text utility (keyword highlight in section titles) ── */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #7a4f1e 0%,
+    #C47C3A 45%,
+    #D4956B 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+/* ── Display typography for public site headings ── */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  color: var(--color-text-primary);
+}
+
+@media (prefers-color-scheme: light) {
+  h2 {
+    color: #0f0f0f;
+  }
+}
+
+/* Exceptions: dashboard and login stay in Inter */
+.dashboard-layout h1,
+.dashboard-layout h2,
+.login-page h1,
+.login-page h2 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+
+/* Areas We Serve — accordion smooth open/close */
+.areas-accordion summary::-webkit-details-marker { display: none; }
+.areas-accordion summary::marker { content: ""; }
+.areas-accordion-content {
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
+.areas-accordion:not([open]) .areas-accordion-content {
+  display: none;
+}
+.areas-accordion[open] .areas-accordion-content {
+  animation: areas-accordion-down 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes areas-accordion-down {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
