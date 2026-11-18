@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SEO from "@/components/SEO";
 import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/layout/Footer";
 import { COLLECTIONS, type FloorProduct, type Tone } from "@/lib/catalogData";
 import { whatsappUrl } from "@/lib/constants";
+import ProductLightbox from "@/components/ProductLightbox";
 import { useRequestProduct } from "@/context/RequestProductContext";
 
 const TONES: Tone[] = ["Light", "Medium", "Dark"];
@@ -90,8 +91,7 @@ function CheckIcon() {
   );
 }
 
-function ProductCard({ product }: { product: FloorProduct }) {
-  const navigate = useNavigate();
+function ProductCard({ product, onOpen }: { product: FloorProduct; onOpen: () => void }) {
   const [view, setView] = useState<"swatch" | "room">("swatch");
   const image = view === "swatch" ? product.swatchImage : product.roomImage;
 
@@ -111,9 +111,12 @@ function ProductCard({ product }: { product: FloorProduct }) {
       id={`product-${product.id}`}
       role="button"
       tabIndex={0}
-      onClick={() => navigate(`/contact`)}
+      onClick={() => onOpen()}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") navigate("/contact");
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen();
+        }
       }}
       style={{
         background: "var(--color-bg-base)",
@@ -229,6 +232,7 @@ export default function FlooringPage() {
   const [collection, setCollection] = useState<string>("all");
   const [tone, setTone] = useState<string>("all");
   const [query, setQuery] = useState("");
+  const [lightbox, setLightbox] = useState<FloorProduct | null>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -245,14 +249,13 @@ export default function FlooringPage() {
 
   const shown = filtered.reduce((n, c) => n + c.products.length, 0);
 
-  // Links like /flooring?product=<id> (from the home page) scroll to that product.
+  // Link direto /flooring?product=<id> (vindo da home): abre o lightbox do produto.
   useEffect(() => {
     const productId = searchParams.get("product");
     if (!productId) return;
-    const t = window.setTimeout(() => {
-      document.getElementById(`product-${productId}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 300);
-    return () => window.clearTimeout(t);
+    const found = ALL_PRODUCTS.find((p) => p.id === productId);
+    if (found) setLightbox(found);
+    return undefined;
   }, [searchParams]);
 
   return (
@@ -485,7 +488,7 @@ export default function FlooringPage() {
 
               <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" style={{ gap: 16 }}>
                 {c.products.map((p) => (
-                  <ProductCard key={p.id} product={p} />
+                  <ProductCard key={p.id} product={p} onOpen={() => setLightbox(p)} />
                 ))}
               </div>
             </div>
@@ -603,6 +606,14 @@ export default function FlooringPage() {
           </Link>
         </div>
       </section>
+
+      {lightbox && (
+        <ProductLightbox
+          product={lightbox}
+          description={COLLECTIONS.find((c) => c.label === lightbox.collection)?.description}
+          onClose={() => setLightbox(null)}
+        />
+      )}
 
       <Footer />
     </Layout>
