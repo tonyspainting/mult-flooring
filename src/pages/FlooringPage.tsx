@@ -5,8 +5,8 @@ import Layout from "@/components/layout/Layout";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/layout/Footer";
 import { COLLECTIONS, type FloorProduct, type Tone } from "@/lib/catalogData";
-import { whatsappUrl } from "@/lib/constants";
 import ProductLightbox from "@/components/ProductLightbox";
+import ProductCard from "@/components/ProductCard";
 import { useRequestProduct } from "@/context/RequestProductContext";
 
 const TONES: Tone[] = ["Light", "Medium", "Dark"];
@@ -88,140 +88,6 @@ function CheckIcon() {
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="3" aria-hidden="true">
       <path d="M20 6 9 17l-5-5" />
     </svg>
-  );
-}
-
-function ProductCard({ product, onOpen }: { product: FloorProduct; onOpen: () => void }) {
-  const [view, setView] = useState<"swatch" | "room">("swatch");
-  const image = view === "swatch" ? product.swatchImage : product.roomImage;
-
-  const toggle = (active: boolean): React.CSSProperties => ({
-    padding: "4px 10px",
-    fontSize: 10,
-    textTransform: "uppercase",
-    letterSpacing: "0.06em",
-    border: "none",
-    cursor: "pointer",
-    background: active ? "rgba(255,255,255,0.9)" : "transparent",
-    color: active ? "#1a1a1a" : "rgba(255,255,255,0.6)",
-  });
-
-  return (
-    <div
-      id={`product-${product.id}`}
-      role="button"
-      tabIndex={0}
-      onClick={() => onOpen()}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onOpen();
-        }
-      }}
-      style={{
-        background: "var(--color-bg-base)",
-        border: "1px solid var(--color-border)",
-        borderRadius: 12,
-        overflow: "hidden",
-        cursor: "pointer",
-        transition: "box-shadow 260ms, transform 260ms",
-      }}
-    >
-      <div style={{ position: "relative" }}>
-        <img
-          src={image}
-          alt={`${product.collection} ${product.name} ${view}`}
-          loading="lazy"
-          style={{ width: "100%", aspectRatio: "4 / 3", objectFit: "cover", display: "block" }}
-        />
-        {product.tag && (
-          <span
-            style={{
-              position: "absolute",
-              top: 8,
-              left: 8,
-              background: "var(--color-accent)",
-              color: "#fff",
-              fontSize: 10,
-              fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
-              borderRadius: 999,
-              padding: "3px 10px",
-            }}
-          >
-            {product.tag}
-          </span>
-        )}
-        <div
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            position: "absolute",
-            bottom: 8,
-            right: 8,
-            display: "flex",
-            background: "rgba(0,0,0,0.55)",
-            borderRadius: 999,
-            overflow: "hidden",
-            backdropFilter: "blur(4px)",
-          }}
-        >
-          <button type="button" aria-pressed={view === "swatch"} onClick={() => setView("swatch")} style={toggle(view === "swatch")}>
-            Swatch
-          </button>
-          <button type="button" aria-pressed={view === "room"} onClick={() => setView("room")} style={toggle(view === "room")}>
-            Room
-          </button>
-        </div>
-      </div>
-
-      <div style={{ padding: "12px 14px 14px" }}>
-        <h3
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: 16,
-            fontWeight: 700,
-            color: "var(--color-text-primary)",
-            margin: 0,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {product.name}
-        </h3>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 6 }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: "var(--color-accent)" }}>{product.price}</span>
-          <span style={{ fontSize: 11, color: "var(--color-text-muted)" }}>{product.thickness}</span>
-        </div>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            // Same as the previous site: "Get a Quote" opens WhatsApp with the product.
-            window.open(
-              whatsappUrl(
-                `Hi! I'm interested in ${product.collection} ${product.name} (${product.price}). Can you tell me more?`,
-              ),
-              "_blank",
-              "noopener,noreferrer",
-            );
-          }}
-          className="transition-all duration-200 hover:!bg-[#7a4f1e] hover:!text-white"
-          style={{
-            width: "100%",
-            height: 38,
-            border: "1px solid var(--color-accent)",
-            borderRadius: 8,
-            fontSize: 13,
-            color: "var(--color-accent)",
-            background: "var(--color-bg-base)",
-            cursor: "pointer",
-            marginTop: 10,
-          }}
-        >
-          Get a Quote
-        </button>
-      </div>
-    </div>
   );
 }
 

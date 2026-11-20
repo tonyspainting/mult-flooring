@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import SectionLabel from "@/components/ui/mult-section-label";
 import BrandButton from "@/components/ui/mult-button";
-import { whatsappUrl } from "@/lib/constants";
+import ProductCard from "@/components/ProductCard";
 
 interface BestSeller {
   id: string;
@@ -25,152 +25,21 @@ const BEST_SELLERS: BestSeller[] = [
   { id: "ps-plus-slate", name: "Slate", collection: "Permshield One Plus", thickness: "6.5 MM", price: "$3.39 / sq. ft.", tone: "Dark", tag: "Bold Choice", swatchImage: "/flooring/permshield-plus-slate-swatch.jpg", roomImage: "/flooring/permshield-plus-slate-room.jpg" },
 ];
 
-const toggleButton = (active: boolean): React.CSSProperties => ({
-  padding: "4px 10px",
-  fontSize: 10,
-  textTransform: "uppercase",
-  letterSpacing: "0.06em",
-  border: "none",
-  cursor: "pointer",
-  background: active ? "rgba(255,255,255,0.9)" : "transparent",
-  color: active ? "#1a1a1a" : "rgba(255,255,255,0.6)",
-});
-
+/** Entrance animation wrapper. The card itself is shared with the catalog. */
 function Card({ product, index }: { product: BestSeller; index: number }) {
   const navigate = useNavigate();
-  const [view, setView] = useState<"swatch" | "room">("swatch");
-  const image = view === "swatch" ? product.swatchImage : product.roomImage;
 
   return (
-    <motion.article
+    <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
-      onClick={() => navigate(`/flooring?product=${product.id}`)}
       className="bs-card hover:-translate-y-1"
-      style={{
-        margin: 0,
-        cursor: "pointer",
-        background: "var(--color-bg-base)",
-        border: "1px solid var(--color-border)",
-        borderRadius: 12,
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        transition: "transform 260ms, box-shadow 260ms",
-      }}
+      style={{ margin: 0, display: "flex" }}
     >
-      <div style={{ position: "relative" }}>
-        <img
-          src={image}
-          alt={`${product.collection} ${product.name} ${view}`}
-          loading="lazy"
-          style={{ width: "100%", aspectRatio: "3 / 4", objectFit: "cover", display: "block", transition: "opacity 300ms" }}
-        />
-        <span
-          style={{
-            position: "absolute",
-            top: 10,
-            left: 10,
-            background: "var(--color-accent)",
-            color: "#fff",
-            fontSize: 10,
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            borderRadius: 999,
-            padding: "3px 10px",
-            fontWeight: 600,
-          }}
-        >
-          {product.tag}
-        </span>
-        <div
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            position: "absolute",
-            bottom: 10,
-            right: 10,
-            display: "flex",
-            background: "rgba(0,0,0,0.55)",
-            backdropFilter: "blur(4px)",
-            borderRadius: 999,
-            overflow: "hidden",
-          }}
-        >
-          <button type="button" aria-pressed={view === "room"} onClick={() => setView("room")} style={toggleButton(view === "room")}>
-            Room
-          </button>
-          <button type="button" aria-pressed={view === "swatch"} onClick={() => setView("swatch")} style={toggleButton(view === "swatch")}>
-            Swatch
-          </button>
-        </div>
-      </div>
-
-      <div style={{ padding: "14px 16px", flex: 1, display: "flex", flexDirection: "column" }}>
-        <h3
-          style={{
-            fontSize: 15,
-            fontWeight: 700,
-            color: "var(--color-text-primary)",
-            letterSpacing: "-0.01em",
-            fontFamily: "var(--font-display)",
-            margin: 0,
-          }}
-        >
-          {product.name}
-        </h3>
-        <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.06em", marginTop: 2, color: "var(--color-text-muted)" }}>
-          {product.collection}
-        </div>
-        <div style={{ flex: 1 }} />
-        <div style={{ borderTop: "1px solid var(--color-border)", marginTop: 12 }} />
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 10 }}>
-          <span style={{ fontSize: 14, fontWeight: 700, color: "var(--color-accent)" }}>{product.price}</span>
-          <span
-            style={{
-              background: "var(--color-bg-elevated)",
-              color: "var(--color-accent)",
-              fontSize: 10,
-              fontWeight: 600,
-              borderRadius: 999,
-              padding: "2px 8px",
-            }}
-          >
-            {product.thickness}
-          </span>
-        </div>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            // Same as the previous site: "Get a Quote" opens WhatsApp with the product.
-            window.open(
-              whatsappUrl(
-                `Hi! I'm interested in ${product.collection} ${product.name} (${product.price}). Can you tell me more?`,
-              ),
-              "_blank",
-              "noopener,noreferrer",
-            );
-          }}
-          style={{
-            marginTop: 10,
-            width: "100%",
-            height: 38,
-            background: "var(--color-accent)",
-            color: "#fff",
-            border: "none",
-            borderRadius: 8,
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: "pointer",
-            transition: "opacity 200ms",
-          }}
-        >
-          Get a Quote
-        </button>
-      </div>
-    </motion.article>
+      <ProductCard product={product} onOpen={() => navigate(`/flooring?product=${product.id}`)} />
+    </motion.div>
   );
 }
 
