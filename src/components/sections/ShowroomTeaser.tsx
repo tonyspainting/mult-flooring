@@ -67,7 +67,7 @@ const ShowroomTeaser = () => {
               maxWidth: 460,
             }}
           >
-            <NewShowroomBadge className="mr-2" />516 N Bedford St, 2nd Floor. Our showroom brings your renovation to life.
+            <NewShowroomBadge className="mr-2" />516 N Bedford St, Suite 2. Our showroom brings your renovation to life.
             Touch the materials, compare the finishes, and leave with
             confidence.
           </p>

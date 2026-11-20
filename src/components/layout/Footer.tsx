@@ -310,9 +310,9 @@ const Footer = () => {
               }}
             >
               <NewShowroomBadge className="mb-2" /><br />
-              516 N Bedford St, 2nd Floor
+              516 N Bedford St, Suite 2
               <br />
-              East Bridgewater, MA 02333
+              East Bridgewater, MA 02333-1185
             </p>
             <p
               className="text-center md:text-left"
@@ -336,7 +336,7 @@ const Footer = () => {
             <span style={labelStyle} className="text-center md:text-left">Location</span>
             <div className="w-full aspect-video md:aspect-square rounded-lg overflow-hidden border border-white/10 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
               <iframe
-                src="https://www.google.com/maps?q=516+N+Bedford+St,+East+Bridgewater,+MA+02333&output=embed"
+                src="https://www.google.com/maps?q=516+N+Bedford+St+Suite+2,+East+Bridgewater,+MA+02333-1185&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

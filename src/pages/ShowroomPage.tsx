@@ -94,7 +94,7 @@ const fadeUp = {
 };
 
 const MAPS_URL =
-  "https://maps.google.com/?q=516+N+Bedford+St+Apt+3+East+Bridgewater+MA+02333";
+  "https://maps.google.com/?q=516+N+Bedford+St+Suite+2+East+Bridgewater+MA+02333-1185";
 
 const CONTACTS = [
   {
@@ -208,7 +208,7 @@ const Hero = () => (
           }}
         >
           <NewShowroomBadge className="mb-2" /><br />
-          516 N Bedford St, 2nd Floor<br />East Bridgewater, MA 02333
+          516 N Bedford St, Suite 2<br />East Bridgewater, MA 02333-1185
         </p>
 
         <div
@@ -1085,7 +1085,7 @@ const BookYourVisit = () => (
           className="hover:!text-white/70 transition-colors"
           style={{ color: "rgba(255,255,255,0.35)", textDecoration: "none" }}
         >
-          <NewShowroomBadge className="mr-2" />516 N Bedford St, 2nd Floor, East Bridgewater, MA 02333
+          <NewShowroomBadge className="mr-2" />516 N Bedford St, Suite 2, East Bridgewater, MA 02333-1185
         </a>
       </motion.div>
     </div>
@@ -1116,10 +1116,10 @@ const ShowroomPage = () => {
           priceRange: "$$",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "516 N Bedford St, 2nd Floor",
+            streetAddress: "516 N Bedford St, Suite 2",
             addressLocality: "East Bridgewater",
             addressRegion: "MA",
-            postalCode: "02333",
+            postalCode: "02333-1185",
             addressCountry: "US",
           },
           geo: {

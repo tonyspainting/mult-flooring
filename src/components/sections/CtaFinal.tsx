@@ -206,7 +206,7 @@ const CtaFinal = () => {
             <div className="flex items-center gap-[10px]">
               <PinIcon />
               <span style={{ fontSize: 14, color: "rgba(255,255,255,0.55)" }}>
-                516 N Bedford St, 2nd Floor, East Bridgewater, MA 02333
+                516 N Bedford St, Suite 2, East Bridgewater, MA 02333-1185
               </span>
               <NewShowroomBadge />
             </div>

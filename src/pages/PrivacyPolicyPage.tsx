@@ -192,7 +192,7 @@ const PrivacyPolicyPage = () => {
             If you have any questions about this Privacy Policy, please contact us:
           </p>
           <p style={textStyle}>Mult Flooring</p>
-          <p style={textStyle}>516 N Bedford St, 2nd Floor, East Bridgewater, MA 02333</p>
+          <p style={textStyle}>516 N Bedford St, Suite 2, East Bridgewater, MA 02333-1185</p>
           <p style={textStyle}>
             Email:{" "}
             <a href="mailto:multflooring@gmail.com" style={linkStyle}>
