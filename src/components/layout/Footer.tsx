@@ -310,7 +310,7 @@ const Footer = () => {
               }}
             >
               <NewShowroomBadge className="mb-2" /><br />
-              516 N Bedford St, Apt 3
+              516 N Bedford St, 2nd Floor
               <br />
               East Bridgewater, MA 02333
             </p>

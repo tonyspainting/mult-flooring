@@ -27,7 +27,7 @@ const homeSchema = {
   email: "multflooring@gmail.com",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "516 N Bedford St, Apt 3",
+    streetAddress: "516 N Bedford St, 2nd Floor",
     addressLocality: "East Bridgewater",
     addressRegion: "MA",
     postalCode: "02333",

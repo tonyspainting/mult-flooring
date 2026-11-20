@@ -21,7 +21,7 @@ const contactSchema = {
     email: "multflooring@gmail.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "516 N Bedford St, Apt 3",
+      streetAddress: "516 N Bedford St, 2nd Floor",
       addressLocality: "East Bridgewater",
       addressRegion: "MA",
       postalCode: "02333",
@@ -318,7 +318,7 @@ export default function ContactPage() {
               <InfoCard
                 icon={<PinIcon />}
                 label="Visit us"
-                value={<><NewShowroomBadge className="mb-1" /><br />516 N Bedford St, Apt 3</>}
+                value={<><NewShowroomBadge className="mb-1" /><br />516 N Bedford St, 2nd Floor</>}
                 sub="East Bridgewater, MA 02333"
               />
               <InfoCard
