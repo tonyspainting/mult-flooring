@@ -16,7 +16,7 @@ const Navbar = () => {
       <img
         src={logo}
         alt="Mult Flooring"
-        className="h-[65px] md:h-[74px] w-auto object-contain"
+        className="h-[65px] lg:h-[74px] w-auto object-contain"
         style={{ opacity: 1, filter: "none", mixBlendMode: "normal" }}
       />
     </div>
@@ -26,7 +26,7 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 w-full z-[500] transition-all duration-300 ease-expo",
-        "h-[60px] md:h-[68px] bg-[rgba(250,247,244,0.92)] border-b border-[var(--color-border)] backdrop-blur-lg"
+        "h-[60px] lg:h-[68px] bg-[rgba(250,247,244,0.92)] border-b border-[var(--color-border)] backdrop-blur-lg"
       )}
     >
       <div className="max-w-[var(--max-width)] mx-auto h-full px-[var(--padding-x-mobile)] md:px-[var(--padding-x)] flex items-center justify-between relative">
@@ -41,7 +41,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links - Centralizados */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-[36px] z-10">
+        <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-[36px] z-10">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -55,7 +55,7 @@ const Navbar = () => {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 z-10">
-          <div className="hidden md:block flex-shrink-0">
+          <div className="hidden lg:block flex-shrink-0">
             <Link to="/contact">
               <BrandButton variant="primary" size="sm">
                 {COMPANY.cta.primary}
@@ -64,7 +64,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="md:hidden flex flex-col justify-center items-end gap-[6px] w-[24px] h-[22px]"
+            className="lg:hidden flex flex-col justify-center items-end gap-[6px] w-[24px] h-[22px]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -98,7 +98,7 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden absolute top-[60px] left-0 w-full bg-[rgba(250,247,244,0.98)] backdrop-blur-lg border-b border-[var(--color-border)] overflow-hidden"
+            className="lg:hidden absolute top-[60px] left-0 w-full bg-[rgba(250,247,244,0.98)] backdrop-blur-lg border-b border-[var(--color-border)] overflow-hidden"
           >
             <div className="flex flex-col gap-6 p-6 px-[var(--padding-x-mobile)]">
               {NAV_LINKS.map((link) => (
