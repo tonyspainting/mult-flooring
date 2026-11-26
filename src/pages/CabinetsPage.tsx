@@ -523,9 +523,17 @@ export default function CabinetsPage() {
             {CABINET_STYLES.map((style, i) => {
               const isSelected = selectedStyle?.id === style.id;
               return (
-                <motion.button
+                <motion.article
                   key={style.id}
-                  type="button"
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={isSelected}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedStyle(isSelected ? null : style);
+                    }
+                  }}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true, amount: 0.1 }}
@@ -659,7 +667,7 @@ export default function CabinetsPage() {
                       ))}
                     </div>
                   </div>
-                </motion.button>
+                </motion.article>
               );
             })}
           </div>
