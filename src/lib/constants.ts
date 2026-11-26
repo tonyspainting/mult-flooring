@@ -2,7 +2,7 @@ export const COMPANY = {
   name: "Mult Flooring",
   phone: "(508) 510-4007",
   phoneRaw: "5085104007",
-  website: "multflooring.com",
+  website: "https://multflooring.com",
   license: "Licensed & Insured in New England",
   rating: "4.9",
   projects: "500+",

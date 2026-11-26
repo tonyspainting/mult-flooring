@@ -22,10 +22,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!--
-      Título estático: serve de fallback enquanto o React não monta.
-      A meta description NÃO fica aqui — cada rota define a sua pelo
-      componente SEO (react-helmet). Um valor fixo aqui criaria uma
-      segunda description em todas as páginas.
+      Static fallback title, used before React mounts.
+      The meta description is NOT set here: each route defines its own
+      through the SEO component (react-helmet). A fixed value here would
+      add a second description to every page.
     -->
     <title>Mult Flooring — Hardwood, Vinyl &amp; Laminate Installation | MA, RI &amp; CT</title>
 
@@ -39,7 +39,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Mult Flooring" />
 
-    <!-- Open Graph / Twitter (fallback estático; o SEO por rota sobrescreve) -->
+    <!-- Open Graph / Twitter static fallback; the per-route SEO overrides it -->
     <meta property="og:site_name" content="Mult Flooring" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />

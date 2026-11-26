@@ -1,12 +1,12 @@
-# Mult Flooring — dois containers:
-#   web       → nginx servindo o site estático (porta 80) e /api/* → form-api
-#   form-api  → Node service that sends the form by e-mail via Resend
+# Mult Flooring: two containers.
+#   web       : nginx serving the static site (port 80) and proxying /api/* to form-api
+#   form-api  : Node service that sends the form by e-mail via Resend
 #
-# Uso local:
-#   cp form-api/.env.example form-api/.env   # e preencha RESEND_API_KEY
+# Local use:
+#   cp form-api/.env.example form-api/.env   # then fill in RESEND_API_KEY
 #   docker compose up --build
-#   abrir http://localhost:8080
-#   (a porta vem do docker-compose.override.yml, que o Coolify ignora)
+#   open http://localhost:8080
+#   (the port comes from docker-compose.override.yml, which Coolify ignores)
 #
 # On Coolify: use the "Docker Compose" build pack with this file.
 # The domain is attached to the `web` service on port 80, internal network.
@@ -22,9 +22,9 @@ services:
         VITE_FORM_ENDPOINT: ${VITE_FORM_ENDPOINT:-}
     image: mult-flooring-web:latest
     container_name: mult-flooring-web
-    # NÃO publicar porta no host: no Coolify o proxy (Traefik) alcança o
-    # container over the internal network. Publishing "8080:80" collides
-    # do próprio servidor. Para testar na sua máquina, use o
+    # Do NOT publish a host port: on Coolify the proxy (Traefik) reaches the
+    # container over the internal network. Publishing "8080:80" collides with
+    # a port already used on the server. To test on your machine, use
     # docker-compose.override.yml, which adds the port locally only.
     expose:
       - "80"

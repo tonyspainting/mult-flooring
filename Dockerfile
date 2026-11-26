@@ -11,7 +11,7 @@
 # BUILD time, so it must arrive as a build arg.
 # ─────────────────────────────────────────────────────────────
 
-# ---------- estágio 1: build ----------
+# ---------- stage 1: build ----------
 FROM node:22-alpine AS build
 
 WORKDIR /app
@@ -25,14 +25,14 @@ ENV VITE_FORM_ENDPOINT=$VITE_FORM_ENDPOINT
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
-# Código-fonte e build
+# Source and build
 COPY . .
 RUN npm run build
 
 # Sanity check: fail the build if the bundle was not produced
 RUN test -f dist/index.html || (echo "ERROR: dist/index.html not generated" && exit 1)
 
-# ---------- estágio 2: runtime ----------
+# ---------- stage 2: runtime ----------
 FROM nginx:1.27-alpine AS runtime
 
 # Configuração própria (remove o site padrão do nginx)

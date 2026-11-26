@@ -1,10 +1,10 @@
-# Só para testes LOCAIS (`docker compose up --build`).
+# LOCAL testing only (`docker compose up --build`).
 #
-# O Coolify usa explicitamente `-f docker-compose.yml`, então este arquivo é
-# ignorado no servidor — lá a porta não é publicada no host, e o proxy acessa
-# o container pela rede interna.
+# Coolify passes `-f docker-compose.yml` explicitly, so this file is ignored on
+# the server: there the port is not published on the host and the proxy reaches
+# the container over the internal network.
 #
-# Aqui a porta 8080 é publicada para você abrir http://localhost:8080.
+# Here port 8080 is published so you can open http://localhost:8080.
 
 services:
   web:

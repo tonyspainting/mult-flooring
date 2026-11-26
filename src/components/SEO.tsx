@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 interface SEOProps {
   title: string;
   description: string;
-  /** Aceita caminho relativo ("/contact") ou URL absoluta. */
+  /** Accepts a relative path ("/contact") or an absolute URL. */
   canonical?: string;
   ogImage?: string;
   ogType?: string;
